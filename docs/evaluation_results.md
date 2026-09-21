@@ -82,6 +82,10 @@ Stage 2 相比 Stage 1 末尾，中文 CAMP 从0.5929到0.7474，混读从0.5781
 
 本机试听与对齐图：`runs/majestic_v1_20260920/diagnostics/stage2_final/report.html`；整句音频在该目录的`full_utterance/wavs/`。这些WAV、HTML附属媒体和checkpoint体积较大，未上传Git。Stage 1第2000步的历史诊断保存在[evaluation](evaluation/diagnostics_step_00002000_summary.json)，不再作为当前训练状态。
 
-## 尚未覆盖的结论
+## 已知问题与未覆盖结论
+
+本轮只是完成固定训练预算，不能认定loss收敛；长上下文中相同首句的预测时长缩短，已在5组有限小样中复现，尚未修复。损失和时长诊断见[完整训练报告](training_report.md)。
+
+### 未覆盖结论
 
 没有正式人工听测、独立608条测试集最终评分、其他原生voice退化评估，亦没有固定学习voice相对encoder_mean的完整自由合成消融。不能用当前指标宣称这些项目已验证。

@@ -1,0 +1,617 @@
+{
+  "source": "runs/majestic_v1_20260920/tensorboard/stage2",
+  "scalars": {
+    "val/zh/count": [
+      {
+        "global_step": 4360,
+        "value": 192.0
+      },
+      {
+        "global_step": 5360,
+        "value": 192.0
+      },
+      {
+        "global_step": 6360,
+        "value": 192.0
+      },
+      {
+        "global_step": 7360,
+        "value": 192.0
+      },
+      {
+        "global_step": 8360,
+        "value": 192.0
+      },
+      {
+        "global_step": 9360,
+        "value": 192.0
+      },
+      {
+        "global_step": 10360,
+        "value": 192.0
+      },
+      {
+        "global_step": 11360,
+        "value": 192.0
+      }
+    ],
+    "val/zh/mel": [
+      {
+        "global_step": 4360,
+        "value": 0.3574562668800354
+      },
+      {
+        "global_step": 5360,
+        "value": 0.3487063944339752
+      },
+      {
+        "global_step": 6360,
+        "value": 0.342960000038147
+      },
+      {
+        "global_step": 7360,
+        "value": 0.3412148356437683
+      },
+      {
+        "global_step": 8360,
+        "value": 0.3398358225822449
+      },
+      {
+        "global_step": 9360,
+        "value": 0.335305780172348
+      },
+      {
+        "global_step": 10360,
+        "value": 0.335271954536438
+      },
+      {
+        "global_step": 11360,
+        "value": 0.333909809589386
+      }
+    ],
+    "val/zh/duration": [
+      {
+        "global_step": 4360,
+        "value": 0.4967113137245178
+      },
+      {
+        "global_step": 5360,
+        "value": 0.48496562242507935
+      },
+      {
+        "global_step": 6360,
+        "value": 0.4751356542110443
+      },
+      {
+        "global_step": 7360,
+        "value": 0.46927955746650696
+      },
+      {
+        "global_step": 8360,
+        "value": 0.46042680740356445
+      },
+      {
+        "global_step": 9360,
+        "value": 0.45931845903396606
+      },
+      {
+        "global_step": 10360,
+        "value": 0.4575747847557068
+      },
+      {
+        "global_step": 11360,
+        "value": 0.45208701491355896
+      }
+    ],
+    "val/zh/duration_ce": [
+      {
+        "global_step": 4360,
+        "value": 0.024568453431129456
+      },
+      {
+        "global_step": 5360,
+        "value": 0.023568736389279366
+      },
+      {
+        "global_step": 6360,
+        "value": 0.02336461842060089
+      },
+      {
+        "global_step": 7360,
+        "value": 0.02366413176059723
+      },
+      {
+        "global_step": 8360,
+        "value": 0.023234501481056213
+      },
+      {
+        "global_step": 9360,
+        "value": 0.022672545164823532
+      },
+      {
+        "global_step": 10360,
+        "value": 0.022663144394755363
+      },
+      {
+        "global_step": 11360,
+        "value": 0.022052282467484474
+      }
+    ],
+    "val/zh/f0": [
+      {
+        "global_step": 4360,
+        "value": 2.5117475986480713
+      },
+      {
+        "global_step": 5360,
+        "value": 2.317577600479126
+      },
+      {
+        "global_step": 6360,
+        "value": 2.2945048809051514
+      },
+      {
+        "global_step": 7360,
+        "value": 2.2739522457122803
+      },
+      {
+        "global_step": 8360,
+        "value": 2.166755199432373
+      },
+      {
+        "global_step": 9360,
+        "value": 2.1416995525360107
+      },
+      {
+        "global_step": 10360,
+        "value": 2.1396589279174805
+      },
+      {
+        "global_step": 11360,
+        "value": 2.0887882709503174
+      }
+    ],
+    "val/zh/energy": [
+      {
+        "global_step": 4360,
+        "value": 0.43487024307250977
+      },
+      {
+        "global_step": 5360,
+        "value": 0.412636399269104
+      },
+      {
+        "global_step": 6360,
+        "value": 0.40687116980552673
+      },
+      {
+        "global_step": 7360,
+        "value": 0.4003639221191406
+      },
+      {
+        "global_step": 8360,
+        "value": 0.3984777331352234
+      },
+      {
+        "global_step": 9360,
+        "value": 0.37661638855934143
+      },
+      {
+        "global_step": 10360,
+        "value": 0.37204432487487793
+      },
+      {
+        "global_step": 11360,
+        "value": 0.36655816435813904
+      }
+    ],
+    "val/en/count": [
+      {
+        "global_step": 4360,
+        "value": 115.0
+      },
+      {
+        "global_step": 5360,
+        "value": 115.0
+      },
+      {
+        "global_step": 6360,
+        "value": 115.0
+      },
+      {
+        "global_step": 7360,
+        "value": 115.0
+      },
+      {
+        "global_step": 8360,
+        "value": 115.0
+      },
+      {
+        "global_step": 9360,
+        "value": 115.0
+      },
+      {
+        "global_step": 10360,
+        "value": 115.0
+      },
+      {
+        "global_step": 11360,
+        "value": 115.0
+      }
+    ],
+    "val/en/mel": [
+      {
+        "global_step": 4360,
+        "value": 0.38519322872161865
+      },
+      {
+        "global_step": 5360,
+        "value": 0.3929513990879059
+      },
+      {
+        "global_step": 6360,
+        "value": 0.3836798369884491
+      },
+      {
+        "global_step": 7360,
+        "value": 0.38225987553596497
+      },
+      {
+        "global_step": 8360,
+        "value": 0.3756917417049408
+      },
+      {
+        "global_step": 9360,
+        "value": 0.37167587876319885
+      },
+      {
+        "global_step": 10360,
+        "value": 0.3760833740234375
+      },
+      {
+        "global_step": 11360,
+        "value": 0.3680320382118225
+      }
+    ],
+    "val/en/duration": [
+      {
+        "global_step": 4360,
+        "value": 0.6398528218269348
+      },
+      {
+        "global_step": 5360,
+        "value": 0.6234739422798157
+      },
+      {
+        "global_step": 6360,
+        "value": 0.6106950640678406
+      },
+      {
+        "global_step": 7360,
+        "value": 0.6113839745521545
+      },
+      {
+        "global_step": 8360,
+        "value": 0.5974879264831543
+      },
+      {
+        "global_step": 9360,
+        "value": 0.598732054233551
+      },
+      {
+        "global_step": 10360,
+        "value": 0.5857787132263184
+      },
+      {
+        "global_step": 11360,
+        "value": 0.5841190814971924
+      }
+    ],
+    "val/en/duration_ce": [
+      {
+        "global_step": 4360,
+        "value": 0.03228111192584038
+      },
+      {
+        "global_step": 5360,
+        "value": 0.03096061199903488
+      },
+      {
+        "global_step": 6360,
+        "value": 0.030623089522123337
+      },
+      {
+        "global_step": 7360,
+        "value": 0.031407251954078674
+      },
+      {
+        "global_step": 8360,
+        "value": 0.030314059928059578
+      },
+      {
+        "global_step": 9360,
+        "value": 0.030558934435248375
+      },
+      {
+        "global_step": 10360,
+        "value": 0.02937897853553295
+      },
+      {
+        "global_step": 11360,
+        "value": 0.029763927683234215
+      }
+    ],
+    "val/en/f0": [
+      {
+        "global_step": 4360,
+        "value": 2.9858338832855225
+      },
+      {
+        "global_step": 5360,
+        "value": 2.899627208709717
+      },
+      {
+        "global_step": 6360,
+        "value": 2.8842318058013916
+      },
+      {
+        "global_step": 7360,
+        "value": 2.9045357704162598
+      },
+      {
+        "global_step": 8360,
+        "value": 2.8173930644989014
+      },
+      {
+        "global_step": 9360,
+        "value": 2.787320137023926
+      },
+      {
+        "global_step": 10360,
+        "value": 2.7935853004455566
+      },
+      {
+        "global_step": 11360,
+        "value": 2.7146987915039062
+      }
+    ],
+    "val/en/energy": [
+      {
+        "global_step": 4360,
+        "value": 0.6058019995689392
+      },
+      {
+        "global_step": 5360,
+        "value": 0.636698305606842
+      },
+      {
+        "global_step": 6360,
+        "value": 0.6099872589111328
+      },
+      {
+        "global_step": 7360,
+        "value": 0.6084674596786499
+      },
+      {
+        "global_step": 8360,
+        "value": 0.5831651091575623
+      },
+      {
+        "global_step": 9360,
+        "value": 0.5715072154998779
+      },
+      {
+        "global_step": 10360,
+        "value": 0.5758950710296631
+      },
+      {
+        "global_step": 11360,
+        "value": 0.554145336151123
+      }
+    ],
+    "val/mixed/count": [
+      {
+        "global_step": 4360,
+        "value": 93.0
+      },
+      {
+        "global_step": 5360,
+        "value": 93.0
+      },
+      {
+        "global_step": 6360,
+        "value": 93.0
+      },
+      {
+        "global_step": 7360,
+        "value": 93.0
+      },
+      {
+        "global_step": 8360,
+        "value": 93.0
+      },
+      {
+        "global_step": 9360,
+        "value": 93.0
+      },
+      {
+        "global_step": 10360,
+        "value": 93.0
+      },
+      {
+        "global_step": 11360,
+        "value": 93.0
+      }
+    ],
+    "val/mixed/mel": [
+      {
+        "global_step": 4360,
+        "value": 0.36934590339660645
+      },
+      {
+        "global_step": 5360,
+        "value": 0.3593519926071167
+      },
+      {
+        "global_step": 6360,
+        "value": 0.34986770153045654
+      },
+      {
+        "global_step": 7360,
+        "value": 0.3453866243362427
+      },
+      {
+        "global_step": 8360,
+        "value": 0.3446525037288666
+      },
+      {
+        "global_step": 9360,
+        "value": 0.3408927023410797
+      },
+      {
+        "global_step": 10360,
+        "value": 0.33994999527931213
+      },
+      {
+        "global_step": 11360,
+        "value": 0.34060853719711304
+      }
+    ],
+    "val/mixed/duration": [
+      {
+        "global_step": 4360,
+        "value": 0.5776829719543457
+      },
+      {
+        "global_step": 5360,
+        "value": 0.5585808157920837
+      },
+      {
+        "global_step": 6360,
+        "value": 0.5466885566711426
+      },
+      {
+        "global_step": 7360,
+        "value": 0.5493932366371155
+      },
+      {
+        "global_step": 8360,
+        "value": 0.5327129364013672
+      },
+      {
+        "global_step": 9360,
+        "value": 0.5339264273643494
+      },
+      {
+        "global_step": 10360,
+        "value": 0.5261979699134827
+      },
+      {
+        "global_step": 11360,
+        "value": 0.5228738188743591
+      }
+    ],
+    "val/mixed/duration_ce": [
+      {
+        "global_step": 4360,
+        "value": 0.02936917170882225
+      },
+      {
+        "global_step": 5360,
+        "value": 0.027908362448215485
+      },
+      {
+        "global_step": 6360,
+        "value": 0.027438972145318985
+      },
+      {
+        "global_step": 7360,
+        "value": 0.027987828478217125
+      },
+      {
+        "global_step": 8360,
+        "value": 0.027544228360056877
+      },
+      {
+        "global_step": 9360,
+        "value": 0.02695867046713829
+      },
+      {
+        "global_step": 10360,
+        "value": 0.026170233264565468
+      },
+      {
+        "global_step": 11360,
+        "value": 0.025812335312366486
+      }
+    ],
+    "val/mixed/f0": [
+      {
+        "global_step": 4360,
+        "value": 2.7413601875305176
+      },
+      {
+        "global_step": 5360,
+        "value": 2.5345518589019775
+      },
+      {
+        "global_step": 6360,
+        "value": 2.504298448562622
+      },
+      {
+        "global_step": 7360,
+        "value": 2.4728987216949463
+      },
+      {
+        "global_step": 8360,
+        "value": 2.3859968185424805
+      },
+      {
+        "global_step": 9360,
+        "value": 2.318117618560791
+      },
+      {
+        "global_step": 10360,
+        "value": 2.330435276031494
+      },
+      {
+        "global_step": 11360,
+        "value": 2.2931363582611084
+      }
+    ],
+    "val/mixed/energy": [
+      {
+        "global_step": 4360,
+        "value": 0.5277349948883057
+      },
+      {
+        "global_step": 5360,
+        "value": 0.5034285187721252
+      },
+      {
+        "global_step": 6360,
+        "value": 0.48902711272239685
+      },
+      {
+        "global_step": 7360,
+        "value": 0.4662662744522095
+      },
+      {
+        "global_step": 8360,
+        "value": 0.4750039279460907
+      },
+      {
+        "global_step": 9360,
+        "value": 0.44626855850219727
+      },
+      {
+        "global_step": 10360,
+        "value": 0.43663981556892395
+      },
+      {
+        "global_step": 11360,
+        "value": 0.4377060830593109
+      }
+    ]
+  }
+}

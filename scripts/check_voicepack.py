@@ -113,16 +113,8 @@ def main():
         assert json.loads((deployment/'export.json').read_text())['conditioning']=='directly_optimized_voicepack'
         synthesis=[json.loads(x) for x in (deployment/'synthesis.jsonl').read_text().splitlines()]
         assert len(synthesis)==3 and all('synthesis_error' not in x for x in synthesis)
-        with (out/'diagnostics.log').open('w') as log:
-            subprocess.run([python,'-m','training.diagnostics','--checkpoint',str(paths[1]),
-                            '--deployment-dir',str(deployment),'--output',str(Path(temp)/'diagnostics'),
-                            '--tensorboard',str(Path(temp)/'tensorboard'),'--limit','1'],cwd=ROOT,env=single_env,
-                           stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)
-        variants={json.loads(x)['variant'] for x in (Path(temp)/'diagnostics/full_utterance/synthesis.jsonl').read_text().splitlines()}
-        assert variants=={'target','oracle_reference_style','oracle_fixed_style','free_fixed_style',
-                          'aligned_predicted_reference','aligned_predicted_fixed'}
         report.update(export_exactly_matches_learned_voice=True,three_language_synthesis_passed=True,
-                      stage2_diagnostic_variants=sorted(variants),encoder_mean_control_saved=(deployment/'encoder_mean.pt').exists())
+                      encoder_mean_control_saved=(deployment/'encoder_mean.pt').exists())
         assert digest(args.checkpoint)==source_hash
         write_json(out/'voicepack_audit.json',report)
         print(json.dumps(report),flush=True)

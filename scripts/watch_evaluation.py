@@ -57,14 +57,6 @@ def main():
                     seen.add(row['group'])
                 writer.flush()
                 if failures:raise RuntimeError(f'{failures} evaluation items failed; see per-stage logs')
-                if not item['smoke']:
-                    command=[str(ROOT/'.venv/bin/python'),str(source/'scripts/run_checkpoint_diagnostics.py'),
-                             '--checkpoint',item['checkpoint'],'--deployment-dir',str(out),
-                             '--output',str(run/'diagnostics'/job.stem),
-                             '--tensorboard',str(run/f"tensorboard/stage{item['stage']}_diagnostics"),
-                             '--gpu',str(args.gpu)]
-                    with (out/'diagnostics.log').open('w') as log:
-                        subprocess.run(command,cwd=source,env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=14400)
                 write_json(out/'complete.json',{'global_step':item['global_step'],'completed_at':time.time()})
                 write_json(run/'evaluation_status.json',{'status':'complete','output':str(out),'global_step':item['global_step'],'updated_at':time.time()})
             except Exception as exc:

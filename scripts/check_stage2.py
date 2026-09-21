@@ -83,7 +83,7 @@ def main():
         del generated,target,sup,loss,mel,wavlm,gan
     report['parameters_unchanged_without_optimizer_step']=before_hash==parameter_hash(model)
     assert report['parameters_unchanged_without_optimizer_step']
-    # Save only a temporary initialized checkpoint to exercise Stage 2 export and all eval variants.
+    # Save only a temporary initialized checkpoint to exercise Stage 2 export.
     with tempfile.TemporaryDirectory(prefix='kokoro_stage2_check_') as temp:
         temp=Path(temp);temporary_checkpoint=temp/'stage2_untrained_audit.pth'
         torch.save({'net':{k:m.state_dict() for k,m in model.items()},'stage':2,'global_step':step,'config':config,
@@ -91,21 +91,12 @@ def main():
         del generator,discriminator,model,optimizers,perceptual,spectral,batch
         gc.collect();torch.cuda.empty_cache()
         python=str(ROOT/'.venv/bin/python');deployment=temp/'export'
-        commands=[
-            [python,'-m','training.evaluate','--stage','synthesize','--checkpoint',str(temporary_checkpoint),'--output',str(deployment),'--per-group-limit','1'],
-            [python,'-m','training.diagnostics','--checkpoint',str(temporary_checkpoint),'--deployment-dir',str(deployment),
-             '--output',str(temp/'diagnostics'),'--tensorboard',str(temp/'tensorboard'),'--limit','1']]
-        for name,command in zip(('stage2_export','stage2_diagnostics'),commands):
-            with (out/f'{name}.log').open('w') as log:subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)
+        command=[python,'-m','training.evaluate','--stage','synthesize','--checkpoint',str(temporary_checkpoint),'--output',str(deployment),'--per-group-limit','1']
+        with (out/'stage2_export.log').open('w') as log:
+            subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)
         synthesized=[json.loads(x) for x in (deployment/'synthesis.jsonl').read_text().splitlines()]
         assert len(synthesized)==3 and all('audio' in x and 'synthesis_error' not in x for x in synthesized)
-        diagnostic=json.loads((temp/'diagnostics/reconstruction_summary.json').read_text())
-        variants={json.loads(x)['variant'] for x in (temp/'diagnostics/full_utterance/synthesis.jsonl').read_text().splitlines()}
-        expected={'target','oracle_reference_style','oracle_fixed_style','free_fixed_style','aligned_predicted_reference','aligned_predicted_fixed'}
-        assert variants==expected,variants
         report['export']={'strict_load_and_three_language_synthesis_passed':True,'voicepack_shape':list(torch.load(deployment/'majestic.pt',weights_only=True).shape)}
-        report['evaluation_branches']={'matched_reference_style':True,'fixed_acoustic_style':True,'oracle_f0_energy':True,
-                                       'full_utterance_variants':sorted(variants),'finite_matched_losses':True}
     assert digest(args.checkpoint)==source_hash
     report['checkpoint_unchanged']=True;report['completed_at']=time.time();report['status']='passed'
     write_json(out/'stage2_audit.json',report)

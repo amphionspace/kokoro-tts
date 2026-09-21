@@ -44,14 +44,23 @@ def collate(items):
 
 class BucketBatches(Sampler):
     """Deterministic global duration buckets, evenly sharded across DDP ranks."""
-    def __init__(self, rows, batch_size, rank=0, world_size=1, epoch=0, start=0, seed=20260920):
+    def __init__(self, rows, batch_size, rank=0, world_size=1, epoch=0, start=0, seed=20260920,
+                 long_sampling=None):
         self.rows, self.batch_size = rows, batch_size
         self.rank, self.world_size = rank, world_size
         self.epoch, self.start, self.seed = epoch, start, seed
+        self.long_sampling = long_sampling
+        self.sampling_report = None
+        self._batches = None
 
     def batches(self):
+        if self._batches is not None:
+            return self._batches
         rng = random.Random(self.seed + self.epoch)
         indices = list(range(len(self.rows)))
+        if self.long_sampling:
+            from training.curriculum import sample_epoch
+            indices, self.sampling_report = sample_epoch(self.rows, self.epoch, self.long_sampling, rng)
         rng.shuffle(indices)
         global_batch = self.batch_size * self.world_size
         ordered = []
@@ -62,6 +71,7 @@ class BucketBatches(Sampler):
         ordered.extend(ordered[:padding])
         batches = [ordered[i:i+global_batch] for i in range(0,len(ordered),global_batch)]
         rng.shuffle(batches)
+        self._batches = batches
         return batches
 
     def __iter__(self):

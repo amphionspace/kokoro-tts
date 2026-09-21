@@ -2,7 +2,20 @@
 
 基座为官方通用 **hexgrad/Kokoro-82M v1.0**，不使用 v1.1-zh。以 LITs 的 MajesticVoice 中文、英文、中英混合合成语音做单音色适配。
 
-文档：[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。评估文档已补充与LITs直接训练IMF最终170k的同文本对比。
+文档：[完整训练报告](docs/training_report.md)、[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。评估文档已补充与LITs直接训练IMF最终170k的同文本对比。
+
+当前实验：从旧Stage 2学习率下降前的第6000步checkpoint恢复，将总预算延长至20轮，后期提高长样本采样。配置为`configs/stage2_20ep_long.json`，运行目录为`runs/majestic_s2_20ep_long_resume6k_20260921`。[长文问题、分析结论及实验方案](docs/long_text_duration.md)。
+
+## 网页 Demo
+
+当前服务已关闭；以下命令可手动启动。
+
+```bash
+.venv/bin/python -m pip install -r demo/requirements.txt
+.venv/bin/python demo/server.py --host 0.0.0.0 --port 32002
+```
+
+浏览器访问`http://服务器IP:32002`，可输入中文、英文或混读文本，调节语速，试听并下载WAV。加载旧10轮Stage 2的基线导出模型（`runs/majestic_v1_20260920/eval/stage2_final`）；权重位置、部署依赖与接口见[Demo说明](demo/README.md)。
 
 ## 数据与基座
 
@@ -26,33 +39,36 @@
 优化器绑定实际参与前向的参数；检查所有活跃模块梯度。checkpoint 保存优化器、逐 rank RNG、buffer、数据哈希、配置及下一批位置，恢复时严格检查数据、配置与卡数。Stage 1 使用原 `source/` 和 `config.json`，Stage 2 使用独立 `source_stage2/` 和 `config_stage2.json`，评价使用 `source_evaluation/`。正式运行会冻结源码和配置快照，依次执行两个阶段，失败时停止并记录原因。
 
 ```bash
-.venv/bin/python scripts/run_training.py --run-dir "$PWD/runs/majestic_v1_20260920"
+.venv/bin/python scripts/run_training.py \
+  --run-dir "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921" \
+  --stage2-config "$PWD/configs/stage2_20ep_long.json" \
+  --stage2-resume-from "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921/origin/stage2_step_00009360.pth"
 ```
 
-本轮完成Stage 1的3,360步与Stage 2的8,400步，累计11,760步。上面命令用于备齐本机数据和依赖后的运行或恢复；同目录有文件锁，已有进程时不要重复启动。
+旧实验完成Stage 1的3,360步与Stage 2的8,400步。上面命令用于新20轮Stage 2实验的启动或恢复；同目录有文件锁，已有进程时不要重复启动。
 
 ## TensorBoard 与 LITs 评价
 
-TensorBoard 端口 **32003**，日志目录 `runs/majestic_v1_20260920/tensorboard`。记录损失、学习率、梯度范数、吞吐、显存、分语言验证指标，以及评价音频和评分。
+TensorBoard 端口 **32003**，只展示旧/新Stage 2的训练与常规评估，排除Stage 1和诊断；对比视图配置保存在本机`runs/tensorboard_stage2_compare/server.json`。记录损失、学习率、梯度范数、吞吐、显存、分语言验证指标，以及评价音频和评分。
 
 ```bash
-.venv/bin/python scripts/watch_evaluation.py --run-dir "$PWD/runs/majestic_v1_20260920" --gpu 3
-.venv/bin/python -m tensorboard.main --logdir runs/majestic_v1_20260920/tensorboard --host 0.0.0.0 --port 32003
+.venv/bin/python scripts/watch_evaluation.py --run-dir "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921" --gpu 3
+# TensorBoard 的四个相关目录见 runs/tensorboard_stage2_compare/server.json
 ```
 
 评价使用 LITs 原有 `training/common/evaluate_checkpoint.py` 的 ASR、metrics 和 summarize 实现：Qwen3-ASR、CER/WER、WavLM/CAMP 相似度、DNSMOS。固定中文 200、英文 200、混合 50 条文本及对应参考；第 100 步先做每类 8 条冒烟评价，后续每 1,000 步和阶段结束做全量评价。GPU 3 同时承担训练和异步评价，因此需要显存余量。
 
 voicepack 从固定的 96 条**训练集**参考中提取均值，不用 val/test 拟合音色。Stage 1 的韵律编码器尚未训练，评价明确标记为“已学声学 style + 原生韵律”的诊断输出；Stage 2 完成前 1000 步后初始化并直接优化独立 256 维 voice，每批一半使用此 voice，另一半使用参考编码器。`majestic.pt` 导出学习到的参数，编码器均值另存 `encoder_mean.pt` 对照。早期评分用于验证链路，不能视作最终音质结论。
 
-补充配对评价位于运行目录`diagnostics/<checkpoint>/report.html`：400条重建、24条整句多条件试听及LITs评分，已覆盖两个阶段末尾。可直接在GitHub查阅的汇总见[评估结果](docs/evaluation_results.md)。
+专项诊断模块及自动调用已从当前代码移除。旧运行只保留必要基线权重、曲线及仓库评估汇总，后续仅执行常规验证和固定文本评估；历史汇总见[评估结果](docs/evaluation_results.md)。
 
 ## 查看本机运行记录
 
 ```bash
-cat runs/majestic_v1_20260920/status.json
-cat runs/majestic_v1_20260920/supervisor_status.json
-cat runs/majestic_v1_20260920/evaluation_status.json
-tail -n 5 runs/majestic_v1_20260920/stage1.log
+cat runs/majestic_s2_20ep_long_resume6k_20260921/status.json
+cat runs/majestic_s2_20ep_long_resume6k_20260921/supervisor_status.json
+cat runs/majestic_s2_20ep_long_resume6k_20260921/evaluation_status.json
+tail -n 5 runs/majestic_s2_20ep_long_resume6k_20260921/stage2.log
 nvidia-smi
 ```
 
@@ -60,7 +76,7 @@ nvidia-smi
 
 ## 清理后的目录
 
-`runs/` 仅保留正式运行 `majestic_v1_20260920`。旧预检 checkpoint、样例音频、调试脚本/配置、重复转换权重和临时日志已清理；检查结论保留在 `reports/`。当前运行的冻结源码快照保持原样，其中历史调试脚本属于启动时快照，不作为新的运行入口。
+`runs/`保留新Stage 2实验、旧Stage 2必要基线、网页服务及TensorBoard对比配置，旧目录仅保留Stage 2基线部署模型、结果及相关曲线。一次性长文分析脚本、数据和试听WAV已清理，结论统一保存在[长文说明](docs/long_text_duration.md)。新实验的冻结源码快照保留；旧诊断和冻结源码已清理。
 
 ## 仓库内容
 

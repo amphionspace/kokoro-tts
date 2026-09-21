@@ -17,6 +17,7 @@ from torch.utils.tensorboard import SummaryWriter
 from training.common import (ROOT, make_model, write_json, digest, load_exact, seed_all,
                              rng_state, restore_rng, save_checkpoint, assert_optimizer_parameters)
 from training.data import SpeechDataset, BucketBatches, collate
+from training.curriculum import validate_long_sampling, validate_budget_resume
 from training.network import Generator, Discriminators
 from losses import MultiResolutionSTFTLoss, WavLMLoss
 
@@ -96,13 +97,18 @@ def main():
     parser.add_argument('--stage',type=int,choices=[1,2],required=True)
     parser.add_argument('--initialize',type=Path)
     parser.add_argument('--resume',type=Path)
+    parser.add_argument('--extend-stage2-budget',action='store_true',help='Resume before LR decay while extending only Stage 2 epochs and the future sampling plan')
     parser.add_argument('--max-steps',type=int,default=0,help='Bounded smoke/benchmark only; zero uses configured epochs')
     parser.add_argument('--batch-size',type=int)
     parser.add_argument('--skip-validation',action='store_true')
     args=parser.parse_args()
     if args.initialize and args.resume:raise ValueError('Initialize and resume are mutually exclusive')
+    if args.extend_stage2_budget and (args.stage!=2 or not args.resume):
+        raise ValueError('--extend-stage2-budget requires --stage 2 and --resume')
     config=json.loads(args.config.read_text())
     if args.batch_size:config['batch_size']=args.batch_size
+    if config.get('long_sampling'):
+        validate_long_sampling(config['long_sampling'],config['stage2_epochs'])
     if args.stage==2 and config.get('learn_voicepack',False):
         if config['voicepack_start_step']<config['stage2_joint_step']:
             raise ValueError('Voicepack must start with or after joint decoder training')
@@ -159,7 +165,9 @@ def main():
     if args.resume:
         if checkpoint['stage']!=args.stage or checkpoint['data_sha256']!=data_hash:
             raise ValueError('Resume stage/data mismatch')
-        if checkpoint['world_size']!=world or checkpoint['config']!=config:
+        if args.extend_stage2_budget:
+            validate_budget_resume(config,checkpoint,len(train),world,lr_for)
+        elif checkpoint['world_size']!=world or checkpoint['config']!=config:
             raise ValueError('Exact resume requires identical world size and configuration')
         for key,opt in optimizers.items():opt.load_state_dict(checkpoint['optimizers'][key])
         start_epoch,next_batch=checkpoint['next_epoch'],checkpoint['next_batch']
@@ -171,13 +179,18 @@ def main():
     else:seed_all(config['seed']+rank)
     del checkpoint
     if rank==0:
-        write_json(run/f'stage{args.stage}_initialization.json',{'base_load':audit,'optimizer_keys':optimizer_keys,'resumed':bool(args.resume),'world_size':world,'batch_size_per_gpu':config['batch_size']})
+        write_json(run/f'stage{args.stage}_initialization.json',{'base_load':audit,'optimizer_keys':optimizer_keys,'resumed':bool(args.resume),
+                   'extended_stage2_budget':args.extend_stage2_budget,
+                   'resume_checkpoint':str(args.resume.resolve()) if args.resume else None,
+                   'resume_checkpoint_sha256':digest(args.resume) if args.resume else None,
+                   'world_size':world,'batch_size_per_gpu':config['batch_size']})
         writer=SummaryWriter(str(run/'tensorboard'/f'stage{args.stage}'))
         writer.add_text('recipe',json.dumps(config,ensure_ascii=False,indent=2),global_step)
     else:writer=None
     epochs=config[f'stage{args.stage}_epochs']
     steps_per_epoch=math.ceil(len(train)/(config['batch_size']*world))
     total_steps=steps_per_epoch*epochs
+    long_sampling=config.get('long_sampling') if args.stage==2 else None
     weights={'s2s':1.,'mono':1.,'duration':1.,'duration_ce':20.,'f0':1.,'energy':1.}
     last_validation={}
     wall=time.monotonic();last_log=wall;last_log_step=stage_step
@@ -197,7 +210,14 @@ def main():
     stopped=False
     for epoch in range(start_epoch,epochs):
         start=next_batch if epoch==start_epoch else 0
-        batches=BucketBatches(train.rows,config['batch_size'],rank,world,epoch,start,config['seed'])
+        batches=BucketBatches(train.rows,config['batch_size'],rank,world,epoch,start,config['seed'],
+                              long_sampling=long_sampling)
+        if long_sampling and rank==0:
+            batches.batches()
+            write_json(run/'sampling'/f'epoch_{epoch+1:04d}.json',batches.sampling_report)
+            writer.add_scalar('sampling/long_weight',batches.sampling_report['long_weight'],global_step)
+            for lang,stats in batches.sampling_report['languages'].items():
+                writer.add_scalar(f'sampling/{lang}/long_fraction',stats['sampled_long_fraction'],global_step)
         # Own generator prevents DataLoader seeding from changing model/dropout RNG.
         loader=DataLoader(train,batch_sampler=batches,num_workers=config['workers_per_gpu'],collate_fn=collate,
                           pin_memory=True,persistent_workers=config['workers_per_gpu']>0,
@@ -269,6 +289,7 @@ def main():
                     status={'status':'training','stage':args.stage,'epoch':epoch,'global_step':global_step,'stage_step':stage_step,
                             'stage_budget_steps':total_steps,'samples_per_second':throughput,'world_size':world,
                             'batch_size_per_gpu':config['batch_size'],'losses':values,'updated_at':time.time()}
+                    if long_sampling:status['long_sample_weight']=batches.sampling_report['long_weight']
                     write_json(run/'status.json',status);write_json(run/f'stage{args.stage}_gradients.json',gradient_report)
                     writer.flush();print(json.dumps(status),flush=True)
                 last_log,last_log_step=now,stage_step

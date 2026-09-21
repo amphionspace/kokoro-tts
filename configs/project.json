@@ -19,12 +19,12 @@
     ],
     "prepared_directory": "data/prepared"
   },
-  "status": "two-stage training and final 450-item evaluation complete; see docs/evaluation_results.md",
+  "status": "Stage 2 resumed from pre-decay step 6000; 20-epoch budget with late long-sample curriculum; baseline retained",
   "training_reference": {
     "repository": "https://github.com/semidark/kikiri-tts",
     "revision": "a12d0410e89841e6f3c09958ae5c072f90ae1d49",
     "recipe": "two-stage Kokoro-compatible fine-tuning",
     "local_training_verified": true
   },
-  "active_run": "runs/majestic_v1_20260920"
+  "active_run": "runs/majestic_s2_20ep_long_resume6k_20260921"
 }
