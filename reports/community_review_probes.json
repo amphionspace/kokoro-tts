@@ -1,0 +1,30 @@
+{
+  "scope": "Mechanism probes, not end-to-end training or quality measurements",
+  "torch": "2.7.1+cu128",
+  "torchaudio": "2.7.1+cu128",
+  "prefixed_load": {
+    "loader_returned_without_error": true,
+    "every_parameter_unchanged": true
+  },
+  "optimizer_replacement": {
+    "current_parameter_objects_owned": 0,
+    "parameters_have_gradients": true,
+    "current_parameters_unchanged_after_step": true
+  },
+  "mel_mismatch": {
+    "audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_200h_20260913/accepted/wavs_24k/475679.wav",
+    "actual_sample_rate": 24000,
+    "training_transform_sample_rate": 16000,
+    "export_transform_sample_rate": 24000,
+    "shape": [
+      80,
+      269
+    ],
+    "normalized_mel_mean_abs_difference": 0.33935636281967163,
+    "filterbanks_equal": false
+  },
+  "untrained_encoder_detection": {
+    "random_untrained_encoder_norm": 0.36086225509643555,
+    "passes_script_norm_threshold": true
+  }
+}

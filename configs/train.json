@@ -1,0 +1,25 @@
+{
+  "seed": 20260920,
+  "batch_size": 16,
+  "workers_per_gpu": 4,
+  "cpu_threads": 2,
+  "bf16": true,
+  "max_mel_frames": 400,
+  "stage1_epochs": 4,
+  "stage2_epochs": 10,
+  "backbone_lr": 5e-05,
+  "auxiliary_lr": 0.0001,
+  "bert_lr": 1e-05,
+  "discriminator_lr": 0.0001,
+  "warmup_steps": 500,
+  "stage2_joint_step": 1000,
+  "grad_clip": 5.0,
+  "mel_weight": 5.0,
+  "wavlm_weight": 1.0,
+  "log_every": 10,
+  "checkpoint_every": 1000,
+  "validate_every": 1000,
+  "early_checkpoints": [
+    100
+  ]
+}

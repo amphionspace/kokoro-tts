@@ -1,0 +1,25 @@
+__pycache__/
+.venv/
+/models/*
+!/models/Kokoro-82M/
+/models/Kokoro-82M/*
+!/models/Kokoro-82M/config.json
+!/models/wavlm-base-plus/
+/models/wavlm-base-plus/*
+!/models/wavlm-base-plus/config.json
+data/
+outputs/
+runs/
+*.part
+
+# Local caches, credentials and generated files
+.ipynb_checkpoints/
+.pytest_cache/
+*.py[cod]
+*.log
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*

@@ -1,0 +1,74 @@
+{
+  "train": {
+    "accepted": 53723,
+    "rejected": 9,
+    "hours": 99.9755111111122,
+    "by_language": {
+      "zh": {
+        "rows": 25323,
+        "hours": 50.000399999999885
+      },
+      "en": {
+        "rows": 16515,
+        "hours": 25.000222222222064
+      },
+      "mixed": {
+        "rows": 11885,
+        "hours": 24.97488888888888
+      }
+    },
+    "reasons": {
+      "ValueError: unsupported_nonEnglish_Latin_from_dataset": 9
+    },
+    "source_sha256": "b89b8d0191137dbdc9341eee9ae815b23adf25aa193fdde43881ca2f28e8c479",
+    "prepared_sha256": "f700caca1a40f37b7e47085893f5dfa6448b5a73c5ca4a8a7e0e8072d1447b19"
+  },
+  "val": {
+    "accepted": 400,
+    "rejected": 0,
+    "hours": 0.7650666666666669,
+    "by_language": {
+      "zh": {
+        "rows": 192,
+        "hours": 0.37662222222222214
+      },
+      "en": {
+        "rows": 115,
+        "hours": 0.19333333333333336
+      },
+      "mixed": {
+        "rows": 93,
+        "hours": 0.19511111111111112
+      }
+    },
+    "reasons": {},
+    "source_sha256": "81d9e206fe93ba9b4e3b7740b7e43b170e544ea4ffdb654baa9fc4157ea4812a",
+    "prepared_sha256": "f1ca7b1c2294a821e67c2ffada236c14d27f0b0b7d63f20f26a4c477753b211d"
+  },
+  "test": {
+    "accepted": 608,
+    "rejected": 0,
+    "hours": 1.1044444444444441,
+    "by_language": {
+      "zh": {
+        "rows": 205,
+        "hours": 0.41542222222222247
+      },
+      "en": {
+        "rows": 294,
+        "hours": 0.4499111111111108
+      },
+      "mixed": {
+        "rows": 109,
+        "hours": 0.23911111111111114
+      }
+    },
+    "reasons": {},
+    "source_sha256": "eccb7a9655c18da32f381fb545c803b887d7a7e5f8b0c6edce65406d3919f4da",
+    "prepared_sha256": "b8a61f1c1882eca65132826791376271a1686e6fe7ea387190b63ca440161ce5"
+  },
+  "evaluation": {
+    "rows": 450,
+    "source_sha256": "957efd16aba7e038b283e981b62e37ecbafafe46af5cef7e4112c54e2e3931d3"
+  }
+}

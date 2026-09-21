@@ -1,0 +1,24 @@
+{
+  "bert": {
+    "tensors": 25,
+    "elements": 6292480
+  },
+  "bert_encoder": {
+    "tensors": 2,
+    "elements": 393728
+  },
+  "predictor": {
+    "tensors": 122,
+    "elements": 16194612
+  },
+  "text_encoder": {
+    "tensors": 24,
+    "elements": 5606400
+  },
+  "decoder": {
+    "tensors": 375,
+    "elements": 53276190
+  },
+  "status": "Historical packaging probe: all five weight groups preserved exactly and round-trip verified. Current strict architecture load is recorded in architecture_load.json; obsolete converted artifact removed.",
+  "artifact_status": "Historical packaging round-trip verified; unused kokoro_base.pth removed during cleanup. Active training loads official kokoro-v1_0.pth directly."
+}

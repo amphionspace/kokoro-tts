@@ -1,0 +1,7 @@
+{
+  "stage": 2,
+  "global_step": 8360,
+  "conditioning": "directly_optimized_voicepack",
+  "reference_manifest_sha256": "19889d431efaf26562645f9f5079e5969c0955f5194d2165016994a6804a1e62",
+  "checkpoint_sha256": "0fe2f797458014fc2e55363698664ab2b0e36ff0b73eaa3f351d6f476ffa28a4"
+}

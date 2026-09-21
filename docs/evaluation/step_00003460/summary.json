@@ -1,0 +1,46 @@
+{
+  "status": "complete",
+  "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_v1_20260920/checkpoints/stage2_step_00003460.pth",
+  "samples": 24,
+  "groups": {
+    "majestic_en": {
+      "samples": 8,
+      "evaluation_failures": 0,
+      "cer_mean": 0.0,
+      "wer_mean": 0.0,
+      "wavlm_similarity_mean": 0.8207107335329056,
+      "camp_similarity_mean": 0.8178576603531837,
+      "dnsmos_ovrl_mean": 3.4011548824821882,
+      "dnsmos_sig_mean": 3.636503749859826,
+      "dnsmos_bak_mean": 4.179493871814145,
+      "cer_micro": 0.0,
+      "wer_micro": 0.0
+    },
+    "majestic_zh": {
+      "samples": 8,
+      "evaluation_failures": 0,
+      "cer_mean": 0.011634199134199134,
+      "wer_mean": 0.0,
+      "wavlm_similarity_mean": 0.8123236820101738,
+      "camp_similarity_mean": 0.6504285708069801,
+      "dnsmos_ovrl_mean": 3.529667236948635,
+      "dnsmos_sig_mean": 3.7373716867896247,
+      "dnsmos_bak_mean": 4.224174631054759,
+      "cer_micro": 0.013513513513513514,
+      "wer_micro": null
+    },
+    "majestic_mixed": {
+      "samples": 8,
+      "evaluation_failures": 0,
+      "cer_mean": 0.0,
+      "wer_mean": 0.0,
+      "wavlm_similarity_mean": 0.7104744017124176,
+      "camp_similarity_mean": 0.6154586374759674,
+      "dnsmos_ovrl_mean": 3.4885766227623325,
+      "dnsmos_sig_mean": 3.7219806290243618,
+      "dnsmos_bak_mean": 4.2086886828303625,
+      "cer_micro": 0.0,
+      "wer_micro": 0.0
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "stage": 2,
+  "global_step": 3460,
+  "conditioning": "fixed_training_reference_mean",
+  "reference_manifest_sha256": "19889d431efaf26562645f9f5079e5969c0955f5194d2165016994a6804a1e62",
+  "checkpoint_sha256": "0c9e554cf5b267f67c457603a74a5d01ca979c44474d7e3b52aa3d356b4b364c"
+}

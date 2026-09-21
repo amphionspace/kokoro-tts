@@ -1,0 +1,88 @@
+{
+  "source": "/119010446/tts-assets/training_runs/ljs_majestic_100h_backbone21k_20260914/data",
+  "selection": "speaker=1; Chinese, English, Mixed",
+  "splits": {
+    "train": {
+      "languages": {
+        "zh": {
+          "rows": 25323,
+          "hours": 50.00039999999946
+        },
+        "en": {
+          "rows": 16515,
+          "hours": 25.000222222221723
+        },
+        "mixed": {
+          "rows": 11894,
+          "hours": 25.000888888888504
+        }
+      },
+      "rows": 53732,
+      "hours": 100.00151111111221,
+      "source_sha256": "ebe427a62279827d16048c6b32096858054dc2f7335cb89443af0681483de7f6",
+      "manifest_sha256": "b89b8d0191137dbdc9341eee9ae815b23adf25aa193fdde43881ca2f28e8c479"
+    },
+    "val": {
+      "languages": {
+        "mixed": {
+          "rows": 93,
+          "hours": 0.1951111111111111
+        },
+        "en": {
+          "rows": 115,
+          "hours": 0.19333333333333327
+        },
+        "zh": {
+          "rows": 192,
+          "hours": 0.3766222222222224
+        }
+      },
+      "rows": 400,
+      "hours": 0.7650666666666669,
+      "source_sha256": "188c0d5f27978dcd8d3f88cecb607245f2b24a511d3ff3127af077b6ca9c76cb",
+      "manifest_sha256": "81d9e206fe93ba9b4e3b7740b7e43b170e544ea4ffdb654baa9fc4157ea4812a"
+    },
+    "test": {
+      "languages": {
+        "mixed": {
+          "rows": 109,
+          "hours": 0.2391111111111111
+        },
+        "en": {
+          "rows": 294,
+          "hours": 0.4499111111111108
+        },
+        "zh": {
+          "rows": 205,
+          "hours": 0.4154222222222222
+        }
+      },
+      "rows": 608,
+      "hours": 1.1044444444444441,
+      "source_sha256": "e03365c0661e67fed2cf9f229bd2d30c4e9a9c55f3d04291c951df9869c0c1d0",
+      "manifest_sha256": "eccb7a9655c18da32f381fb545c803b887d7a7e5f8b0c6edce65406d3919f4da"
+    }
+  },
+  "reference_audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_200h_20260913/reference/ts004_cn_000001.wav",
+  "reference_sha256": "ba9a27c9569452da6f5fa28056a08259f3844ae9007cd0646b8837d5ed7aec26",
+  "group_references": {
+    "majestic_en": {
+      "audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_200h_20260913/candidates/wavs_24k/72003.wav",
+      "sha256": "cd2abc1aaeef97e9365bbd57b4c631fdf2f0f863389c7ede5ff5edea164af13d"
+    },
+    "majestic_zh": {
+      "audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_200h_20260913/reference/ts004_cn_000001.wav",
+      "sha256": "ba9a27c9569452da6f5fa28056a08259f3844ae9007cd0646b8837d5ed7aec26"
+    },
+    "majestic_mixed": {
+      "audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_200h_20260913/reference/ts004_cn_000001.wav",
+      "sha256": "ba9a27c9569452da6f5fa28056a08259f3844ae9007cd0646b8837d5ed7aec26"
+    }
+  },
+  "checks": [
+    "all selected WAV headers: mono 24k, duration",
+    "cross-split audio/text/source-group disjoint",
+    "reference SHA256"
+  ],
+  "frontend_status": "Raw text only; Kokoro/Misaki phonemization still required. LITs IDs intentionally excluded."
+}

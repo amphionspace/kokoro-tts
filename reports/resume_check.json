@@ -1,0 +1,74 @@
+{
+  "same_position": true,
+  "modules": {
+    "bert": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    },
+    "bert_encoder": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    },
+    "text_encoder": {
+      "max_absolute_difference": 3.7997961044311523e-07,
+      "allclose_atol_1e-5": true
+    },
+    "predictor": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    },
+    "decoder": {
+      "max_absolute_difference": 5.450798198580742e-06,
+      "allclose_atol_1e-5": true
+    },
+    "style_encoder": {
+      "max_absolute_difference": 1.564621925354004e-07,
+      "allclose_atol_1e-5": true
+    },
+    "predictor_encoder": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    },
+    "text_aligner": {
+      "max_absolute_difference": 5.550682544708252e-07,
+      "allclose_atol_1e-5": true
+    },
+    "pitch_extractor": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    },
+    "mpd": {
+      "max_absolute_difference": 3.725290298461914e-09,
+      "allclose_atol_1e-5": true
+    },
+    "msd": {
+      "max_absolute_difference": 1.862645149230957e-09,
+      "allclose_atol_1e-5": true
+    },
+    "wd": {
+      "max_absolute_difference": 0.0,
+      "allclose_atol_1e-5": true
+    }
+  },
+  "validation": {
+    "zh": {
+      "count": 192,
+      "mel": 0.6943727537679175,
+      "s2s": 12.707698971033096,
+      "mono": 0.1065787369152531
+    },
+    "en": {
+      "count": 115,
+      "mel": 0.546293845643168,
+      "s2s": 5.066580345319665,
+      "mono": 0.12399643837757733
+    },
+    "mixed": {
+      "count": 93,
+      "mel": 0.6562107884755699,
+      "s2s": 12.118779428543583,
+      "mono": 0.11596285359513375
+    }
+  },
+  "note": "Identical RNG and data position; CUDA backward reductions may differ at floating-point roundoff."
+}

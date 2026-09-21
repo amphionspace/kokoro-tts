@@ -1,0 +1,30 @@
+{
+  "base_model": {
+    "repo_id": "hexgrad/Kokoro-82M",
+    "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "checkpoint": "kokoro-v1_0.pth",
+    "version": "v1.0",
+    "sample_rate": 24000
+  },
+  "data": {
+    "train": "data/train.jsonl",
+    "val": "data/val.jsonl",
+    "test": "data/test.jsonl",
+    "speaker": "majestic",
+    "frontend": "Kokoro-compatible Misaki; not LITs token IDs",
+    "languages": [
+      "zh",
+      "en",
+      "mixed"
+    ],
+    "prepared_directory": "data/prepared"
+  },
+  "status": "two-stage training and final 450-item evaluation complete; see docs/evaluation_results.md",
+  "training_reference": {
+    "repository": "https://github.com/semidark/kikiri-tts",
+    "revision": "a12d0410e89841e6f3c09958ae5c072f90ae1d49",
+    "recipe": "two-stage Kokoro-compatible fine-tuning",
+    "local_training_verified": true
+  },
+  "active_run": "runs/majestic_v1_20260920"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "source": "runs/majestic_v1_20260920/eval/stage1_final/summary.json",
+    "snapshot": "docs/evaluation/stage1_final/summary.json",
+    "sha256": "b5a7acaec9e4457e8b29bd50ab3866793290da3aa4153bb7cbaecd4fa28fb735"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/stage1_final/export.json",
+    "snapshot": "docs/evaluation/stage1_final/export.json",
+    "sha256": "bb35f544eee12216409743d388b056f97b1a80d573868da4aff857b80c59b554"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/stage2_final/summary.json",
+    "snapshot": "docs/evaluation/stage2_final/summary.json",
+    "sha256": "c566b940c90ae895838f76868a85ce0f2ddbf7ee2632478a5482a380660fb2bf"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/stage2_final/export.json",
+    "snapshot": "docs/evaluation/stage2_final/export.json",
+    "sha256": "39d457ce2eda2537b180bc5366847e42168d2d326a612d307b1e1b57f4282995"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00000100/summary.json",
+    "snapshot": "docs/evaluation/step_00000100/summary.json",
+    "sha256": "adf41c4074bf7d07e2ceb7aa9b0568de02d41769b42970264baf8ddeb6320614"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00000100/export.json",
+    "snapshot": "docs/evaluation/step_00000100/export.json",
+    "sha256": "ca030a0171af5f5c7f4d7f178f280cfee4458f61805a3edb91ca0e5ad160de45"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00001000/summary.json",
+    "snapshot": "docs/evaluation/step_00001000/summary.json",
+    "sha256": "40385424904a4608ba04eadd7f46801b299f7983c77229a7796f18e815224178"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00001000/export.json",
+    "snapshot": "docs/evaluation/step_00001000/export.json",
+    "sha256": "b36cc583a8d053b40db745643b3f6844b0381340777af4b039d8c96b2f57a383"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00002000/summary.json",
+    "snapshot": "docs/evaluation/step_00002000/summary.json",
+    "sha256": "e6116a2fa826387a1c19ee68f90c80b4e3981044ed2ec917ea830378b83268e1"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00002000/export.json",
+    "snapshot": "docs/evaluation/step_00002000/export.json",
+    "sha256": "6b9b93bd2b631e12cc39cb456ccdef1a6adb82fe619a5204c73ffbf34275a30d"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00003000/summary.json",
+    "snapshot": "docs/evaluation/step_00003000/summary.json",
+    "sha256": "a4a817f1ed805a10ac6264029584c71bb4e138d008ae15d19b1d118200453645"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00003000/export.json",
+    "snapshot": "docs/evaluation/step_00003000/export.json",
+    "sha256": "68d49460da9ff94bed739b94f4cbd7c16809cd4247b7800d22e7aa48ad7c75a2"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00003460/summary.json",
+    "snapshot": "docs/evaluation/step_00003460/summary.json",
+    "sha256": "d80ad360fc4e1cc08a7b58d2da559f0acfe7c8dedc28bba1d3bf62333dfcb4b6"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00003460/export.json",
+    "snapshot": "docs/evaluation/step_00003460/export.json",
+    "sha256": "b9e9db2426cec27f57f3793e311e67be3535528fe22f2fb60c5cbe2f89319da2"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00004360/summary.json",
+    "snapshot": "docs/evaluation/step_00004360/summary.json",
+    "sha256": "66d77e3a294b82efeee30941039a0c93cff4719f2a2d920b4235d5d0d9751e9c"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00004360/export.json",
+    "snapshot": "docs/evaluation/step_00004360/export.json",
+    "sha256": "c4113b51e5e0769dc1832d880802e93920695f7d00d0a8a3cb31b21b653cc396"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00005360/summary.json",
+    "snapshot": "docs/evaluation/step_00005360/summary.json",
+    "sha256": "bb606d5e0b922fbd7e561362e1389ed5b8af11d2f77f1ccebe7c09d2969846cf"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00005360/export.json",
+    "snapshot": "docs/evaluation/step_00005360/export.json",
+    "sha256": "6ffff5293c6618c32cf6632a36769bba78514d3b0642b8a4d46cbd9c77c0ad76"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00006360/summary.json",
+    "snapshot": "docs/evaluation/step_00006360/summary.json",
+    "sha256": "1e6f59c2ff46499eeaa72defcc50d4fc697be377f748dd8e2aca7b33e3918b82"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00006360/export.json",
+    "snapshot": "docs/evaluation/step_00006360/export.json",
+    "sha256": "b9cc83422b9606e661d59a4c3b22bddaa37ddf4ed6be60e999813bf09bcd3787"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00007360/summary.json",
+    "snapshot": "docs/evaluation/step_00007360/summary.json",
+    "sha256": "75c5bd93e6d7697907553181b7945c0bc9d79be6ea20dea9626c0d251192f628"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00007360/export.json",
+    "snapshot": "docs/evaluation/step_00007360/export.json",
+    "sha256": "dc0763cde80f09fbc6e362cc53d27b48449a11c3d0d9abbdd88f6579fcef8385"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00008360/summary.json",
+    "snapshot": "docs/evaluation/step_00008360/summary.json",
+    "sha256": "98798b905610aea424bd85e6ad8e82de6303d106bece9e890d93ff805f463927"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00008360/export.json",
+    "snapshot": "docs/evaluation/step_00008360/export.json",
+    "sha256": "560be06697aa65f4f6245dc9fb768f1bd84175c22ed6d5de9923a0a7e8b04dee"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00009360/summary.json",
+    "snapshot": "docs/evaluation/step_00009360/summary.json",
+    "sha256": "03ec4f34f0e73822c652dec38983c9da2865986f4315804448df845d15253719"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00009360/export.json",
+    "snapshot": "docs/evaluation/step_00009360/export.json",
+    "sha256": "963707c2c41bc992849d58a1f8b0ec6002b2e115a127ee27bcaa155787bec552"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00010360/summary.json",
+    "snapshot": "docs/evaluation/step_00010360/summary.json",
+    "sha256": "246b6bef4f4d3df5433866c2d647a1f5a4beb57ec029d78d3557db160a749588"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00010360/export.json",
+    "snapshot": "docs/evaluation/step_00010360/export.json",
+    "sha256": "202b3e4bc7d8a5685f597ea923017d4c7d777299116ed334ce9c1f88d295d88a"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00011360/summary.json",
+    "snapshot": "docs/evaluation/step_00011360/summary.json",
+    "sha256": "2de9a593a9c9ccdcdc8523ad2ad782af0ea2d8f21ec3d776334bd6c89de46559"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/eval/step_00011360/export.json",
+    "snapshot": "docs/evaluation/step_00011360/export.json",
+    "sha256": "488897f75a40712d77b4778e87f58f93eb36a578c85d8d53c9e5e19aa0cf5a20"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/stage1_final/summary.json",
+    "snapshot": "docs/evaluation/diagnostics_stage1_final_summary.json",
+    "sha256": "636e6b7903a0ef68b4c620ec3adb0ff321d76e72057f16b33530ac1e172ee734"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/stage1_final/protocol.json",
+    "snapshot": "docs/evaluation/diagnostics_stage1_final_protocol.json",
+    "sha256": "55e090d70438fe029c537b29cbf260adec681c82c0bc25756c4e54a5bfdb7036"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/stage2_final/summary.json",
+    "snapshot": "docs/evaluation/diagnostics_stage2_final_summary.json",
+    "sha256": "88a669b1f5aceabf4e57ff3edf52a18d477ddd4a62940d28f61e3af0dae45889"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/stage2_final/protocol.json",
+    "snapshot": "docs/evaluation/diagnostics_stage2_final_protocol.json",
+    "sha256": "08759aa3e7aedd68498d7639ffd499db94985033cf58b490670064c4ea2d9314"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/step_00002000/summary.json",
+    "snapshot": "docs/evaluation/diagnostics_step_00002000_summary.json",
+    "sha256": "a121e90f1928526c447c49dde481ccb9ed5cc7237e6ca9a6e0ae7fae41bc09bd"
+  },
+  {
+    "source": "runs/majestic_v1_20260920/diagnostics/step_00002000/protocol.json",
+    "snapshot": "docs/evaluation/diagnostics_step_00002000_protocol.json",
+    "sha256": "1b437eb9c63b2ede65da5c6cc7589d6c3c504a6404e9a087c64f21ae09782853"
+  }
+]

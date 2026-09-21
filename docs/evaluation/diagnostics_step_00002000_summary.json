@@ -1,0 +1,320 @@
+{
+  "stage": 1,
+  "global_step": 2000,
+  "checkpoint_sha256": "fa756a7c58036d5dbc3e638586475c1ffbee09b93b59d011e17b278cbf89bf08",
+  "matched_crops": {
+    "zh": {
+      "samples": 192,
+      "crop_seconds": 4.869661458333334,
+      "fixed_minus_reference/mel": 0.006459963119899233,
+      "fixed_minus_reference/wavlm": 0.012183046899735928,
+      "matched_fixed_acoustic/mel": 0.2597511104152848,
+      "matched_fixed_acoustic/over_one_fraction": 0.0,
+      "matched_fixed_acoustic/peak": 0.38910664167876047,
+      "matched_fixed_acoustic/wavlm": 1.1832332229241729,
+      "matched_reference_style/mel": 0.2532911472953856,
+      "matched_reference_style/over_one_fraction": 0.0,
+      "matched_reference_style/peak": 0.3918301514349878,
+      "matched_reference_style/wavlm": 1.171050176024437,
+      "style_distance_to_fixed": 0.29444848955608904,
+      "supervision/mono": 0.06357252062298357,
+      "supervision/s2s": 0.552116923344632
+    },
+    "en": {
+      "samples": 115,
+      "crop_seconds": 4.823478260869566,
+      "fixed_minus_reference/mel": 0.005969822665919429,
+      "fixed_minus_reference/wavlm": 0.008766733563464621,
+      "matched_fixed_acoustic/mel": 0.27711223195428436,
+      "matched_fixed_acoustic/over_one_fraction": 0.0,
+      "matched_fixed_acoustic/peak": 0.43069003172542736,
+      "matched_fixed_acoustic/wavlm": 1.1036135632058848,
+      "matched_reference_style/mel": 0.2711424092883649,
+      "matched_reference_style/over_one_fraction": 0.0,
+      "matched_reference_style/peak": 0.42739842171254366,
+      "matched_reference_style/wavlm": 1.0948468296424203,
+      "style_distance_to_fixed": 0.2500958053962044,
+      "supervision/mono": 0.09612174299748047,
+      "supervision/s2s": 0.5153980921144071
+    },
+    "mixed": {
+      "samples": 93,
+      "crop_seconds": 4.818010752688172,
+      "fixed_minus_reference/mel": 0.007058989617132371,
+      "fixed_minus_reference/wavlm": 0.012464497679023332,
+      "matched_fixed_acoustic/mel": 0.26136302002655565,
+      "matched_fixed_acoustic/over_one_fraction": 0.0,
+      "matched_fixed_acoustic/peak": 0.4005906633151475,
+      "matched_fixed_acoustic/wavlm": 1.2145631005687099,
+      "matched_reference_style/mel": 0.25430403040942323,
+      "matched_reference_style/over_one_fraction": 0.0,
+      "matched_reference_style/peak": 0.40389907007576314,
+      "matched_reference_style/wavlm": 1.2020986028896865,
+      "style_distance_to_fixed": 0.2919073743365144,
+      "supervision/mono": 0.07315199215325617,
+      "supervision/s2s": 0.7176959444117802
+    },
+    "all": {
+      "samples": 400,
+      "crop_seconds": 4.844375,
+      "fixed_minus_reference/mel": 0.006458321399986744,
+      "fixed_minus_reference/wavlm": 0.011266294121742248,
+      "matched_fixed_acoustic/mel": 0.26511720184236764,
+      "matched_fixed_acoustic/over_one_fraction": 0.0,
+      "matched_fixed_acoustic/peak": 0.4037319013476372,
+      "matched_fixed_acoustic/wavlm": 1.16762676730752,
+      "matched_reference_style/mel": 0.2586588804423809,
+      "matched_reference_style/over_one_fraction": 0.0,
+      "matched_reference_style/peak": 0.40486205272376535,
+      "matched_reference_style/wavlm": 1.1563604731857777,
+      "style_distance_to_fixed": 0.28110628357157114,
+      "supervision/mono": 0.07515764918643981,
+      "supervision/s2s": 0.5800573817640543
+    }
+  },
+  "alignment": {
+    "zh": {
+      "samples": 192,
+      "alignment_frames": 299.0729166666667,
+      "boundary_frame_fraction": 0.062826926043878,
+      "interior_duration_max_frames": 17.135416666666668,
+      "interior_duration_over_50_fraction": 0.0,
+      "soft_attention_mass_inside_mas": 0.6630339858432611,
+      "soft_peak_backward_fraction": 0.00388002715286954,
+      "token_count": 152.57291666666666,
+      "unassigned_frame_fraction": 0.0,
+      "zero_duration_token_fraction": 0.0
+    },
+    "en": {
+      "samples": 115,
+      "alignment_frames": 258.6347826086957,
+      "boundary_frame_fraction": 0.07567612572532634,
+      "interior_duration_max_frames": 19.860869565217392,
+      "interior_duration_over_50_fraction": 0.0,
+      "soft_attention_mass_inside_mas": 0.7387682764426522,
+      "soft_peak_backward_fraction": 0.010064527530061162,
+      "token_count": 96.74782608695652,
+      "unassigned_frame_fraction": 0.0,
+      "zero_duration_token_fraction": 0.0
+    },
+    "mixed": {
+      "samples": 93,
+      "alignment_frames": 318.7096774193548,
+      "boundary_frame_fraction": 0.06253792639941938,
+      "interior_duration_max_frames": 17.397849462365592,
+      "interior_duration_over_50_fraction": 0.0,
+      "soft_attention_mass_inside_mas": 0.6658548937048964,
+      "soft_peak_backward_fraction": 0.0073333123037892,
+      "token_count": 152.55913978494624,
+      "unassigned_frame_fraction": 0.0,
+      "zero_duration_token_fraction": 0.0
+    },
+    "all": {
+      "samples": 400,
+      "alignment_frames": 292.0125,
+      "boundary_frame_fraction": 0.06645387853495777,
+      "interior_duration_max_frames": 17.98,
+      "interior_duration_over_50_fraction": 0.0,
+      "soft_attention_mass_inside_mas": 0.6854634554684162,
+      "soft_peak_backward_fraction": 0.006460959808900952,
+      "token_count": 136.52,
+      "unassigned_frame_fraction": 0.0,
+      "zero_duration_token_fraction": 0.0
+    }
+  },
+  "paired_full_utterances": {
+    "target": {
+      "status": "complete",
+      "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_v1_20260920/checkpoints/stage1_step_00002000.pth",
+      "samples": 24,
+      "groups": {
+        "majestic_mixed": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.001953125,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8132808730006218,
+          "camp_similarity_mean": 0.7796250730752945,
+          "dnsmos_ovrl_mean": 3.446614444382215,
+          "dnsmos_sig_mean": 3.669387000601557,
+          "dnsmos_bak_mean": 4.179405920129763,
+          "cer_micro": 0.002421307506053269,
+          "wer_micro": 0.0
+        },
+        "majestic_en": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8500059992074966,
+          "camp_similarity_mean": 0.8399736508727074,
+          "dnsmos_ovrl_mean": 3.3950490316336674,
+          "dnsmos_sig_mean": 3.6231073729922914,
+          "dnsmos_bak_mean": 4.177107427329308,
+          "cer_micro": 0.0,
+          "wer_micro": 0.0
+        },
+        "majestic_zh": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8555397838354111,
+          "camp_similarity_mean": 0.8116247355937958,
+          "dnsmos_ovrl_mean": 3.386707077547889,
+          "dnsmos_sig_mean": 3.632026947426326,
+          "dnsmos_bak_mean": 4.148067875970094,
+          "cer_micro": 0.0,
+          "wer_micro": null
+        }
+      }
+    },
+    "oracle_reference_style": {
+      "status": "complete",
+      "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_v1_20260920/checkpoints/stage1_step_00002000.pth",
+      "samples": 24,
+      "groups": {
+        "majestic_mixed": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.04802261257763975,
+          "wer_mean": 0.29471153846153847,
+          "wavlm_similarity_mean": 0.8169000893831253,
+          "camp_similarity_mean": 0.6844407543540001,
+          "dnsmos_ovrl_mean": 3.3991382407585307,
+          "dnsmos_sig_mean": 3.6310084063838275,
+          "dnsmos_bak_mean": 4.166746467127936,
+          "cer_micro": 0.048426150121065374,
+          "wer_micro": 0.25
+        },
+        "majestic_en": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8674585819244385,
+          "camp_similarity_mean": 0.8313958272337914,
+          "dnsmos_ovrl_mean": 3.3702880400294117,
+          "dnsmos_sig_mean": 3.604394613722505,
+          "dnsmos_bak_mean": 4.174811901077581,
+          "cer_micro": 0.0,
+          "wer_micro": 0.0
+        },
+        "majestic_zh": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.001388888888888889,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8445806428790092,
+          "camp_similarity_mean": 0.7000900655984879,
+          "dnsmos_ovrl_mean": 3.402876147299604,
+          "dnsmos_sig_mean": 3.6362680368006908,
+          "dnsmos_bak_mean": 4.16669185053939,
+          "cer_micro": 0.0031446540880503146,
+          "wer_micro": null
+        }
+      }
+    },
+    "oracle_fixed_style": {
+      "status": "complete",
+      "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_v1_20260920/checkpoints/stage1_step_00002000.pth",
+      "samples": 24,
+      "groups": {
+        "majestic_mixed": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.04712975543478261,
+          "wer_mean": 0.29471153846153847,
+          "wavlm_similarity_mean": 0.8168103098869324,
+          "camp_similarity_mean": 0.6851901933550835,
+          "dnsmos_ovrl_mean": 3.393702860020703,
+          "dnsmos_sig_mean": 3.626335949962436,
+          "dnsmos_bak_mean": 4.166365174339358,
+          "cer_micro": 0.04600484261501211,
+          "wer_micro": 0.25
+        },
+        "majestic_en": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8669854179024696,
+          "camp_similarity_mean": 0.8314789906144142,
+          "dnsmos_ovrl_mean": 3.3770061514502947,
+          "dnsmos_sig_mean": 3.6103625965146753,
+          "dnsmos_bak_mean": 4.178367116409804,
+          "cer_micro": 0.0,
+          "wer_micro": 0.0
+        },
+        "majestic_zh": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.004513888888888889,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8422788083553314,
+          "camp_similarity_mean": 0.692114882171154,
+          "dnsmos_ovrl_mean": 3.406833457244716,
+          "dnsmos_sig_mean": 3.638721674226755,
+          "dnsmos_bak_mean": 4.170653074565642,
+          "cer_micro": 0.006289308176100629,
+          "wer_micro": null
+        }
+      }
+    },
+    "free_fixed_style": {
+      "status": "complete",
+      "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_v1_20260920/checkpoints/stage1_step_00002000.pth",
+      "samples": 24,
+      "groups": {
+        "majestic_mixed": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.04004998059006211,
+          "wer_mean": 0.16346153846153846,
+          "wavlm_similarity_mean": 0.777320995926857,
+          "camp_similarity_mean": 0.5968728587031364,
+          "dnsmos_ovrl_mean": 3.4217179829285502,
+          "dnsmos_sig_mean": 3.6458848443416545,
+          "dnsmos_bak_mean": 4.187124147810147,
+          "cer_micro": 0.04600484261501211,
+          "wer_micro": 0.225
+        },
+        "majestic_en": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.7949525564908981,
+          "camp_similarity_mean": 0.7994523271918297,
+          "dnsmos_ovrl_mean": 3.396436303641992,
+          "dnsmos_sig_mean": 3.6253647388981647,
+          "dnsmos_bak_mean": 4.186645389619389,
+          "cer_micro": 0.0,
+          "wer_micro": 0.0
+        },
+        "majestic_zh": {
+          "samples": 8,
+          "evaluation_failures": 0,
+          "cer_mean": 0.003125,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.8039845377206802,
+          "camp_similarity_mean": 0.6100165396928787,
+          "dnsmos_ovrl_mean": 3.4475570913783073,
+          "dnsmos_sig_mean": 3.660921350175531,
+          "dnsmos_bak_mean": 4.193714519320752,
+          "cer_micro": 0.0031446540880503146,
+          "wer_micro": null
+        }
+      }
+    }
+  },
+  "evaluation_failures": 0,
+  "selection": "fixed per-language duration quantiles, independent of model scores",
+  "per_condition_samples": 24,
+  "caveats": [
+    "Full-utterance ASR uses complete matching transcripts; crop reconstructions are never ASR-scored.",
+    "Oracle reference style uses the target audio and measures conditional reconstruction, not zero-shot generation.",
+    "Duration-quantile cohort is a diagnostic set, not an unbiased estimate over the full corpus.",
+    "MAS monotonicity is enforced; inspect soft alignments and durations for alignment quality."
+  ]
+}

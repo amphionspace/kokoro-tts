@@ -1,0 +1,7 @@
+{
+  "stage": 1,
+  "global_step": 1000,
+  "conditioning": "stage1_acoustic_plus_native_base_prosody_diagnostic",
+  "reference_manifest_sha256": "19889d431efaf26562645f9f5079e5969c0955f5194d2165016994a6804a1e62",
+  "checkpoint_sha256": "547ab8650e35644252a237db0ff5c64c2b03e747ca76fcfd2ce22ad3f8294ba1"
+}

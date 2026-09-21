@@ -1,0 +1,27 @@
+{
+  "bert": {
+    "matched_tensors": 25,
+    "missing": [],
+    "unexpected": []
+  },
+  "bert_encoder": {
+    "matched_tensors": 2,
+    "missing": [],
+    "unexpected": []
+  },
+  "predictor": {
+    "matched_tensors": 122,
+    "missing": [],
+    "unexpected": []
+  },
+  "text_encoder": {
+    "matched_tensors": 24,
+    "missing": [],
+    "unexpected": []
+  },
+  "decoder": {
+    "matched_tensors": 375,
+    "missing": [],
+    "unexpected": []
+  }
+}

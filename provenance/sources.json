@@ -1,0 +1,26 @@
+{
+  "repo": "https://github.com/semidark/kikiri-tts",
+  "revision": "a12d0410e89841e6f3c09958ae5c072f90ae1d49",
+  "submodules": "b1956da84bf4a6ccc88f2440078024f1c4bfec7d StyleTTS2 (heads/main)\n b96fef95e6a746495f92443fac7c688f90fc57fc kokoro (heads/main)",
+  "base_vocab_entries": 114,
+  "mapping_mismatches": {},
+  "status": "required source vendored; project trainer independently adapted and preflighted",
+  "layout": {
+    "training_architecture": "vendor/styletts2",
+    "inference": "vendor/kokoro",
+    "auxiliary_weights": "models/auxiliary",
+    "active_trainer": "training/train.py"
+  },
+  "local_changes": [
+    "strict checkpoint loading",
+    "inference AdaIN affine=False matching v1.0",
+    "FP32 text encoder packed LSTM",
+    "native-centered auxiliary style initialization",
+    "four-GPU DDP and exact-state checkpointing",
+    "shared feature transform",
+    "fixed LITs evaluation adapter",
+    "Stage 2 learned fixed voice mixed with reference styles after 1000 steps",
+    "single-layer DurationEncoder LSTM dropout=0 to avoid redundant cuDNN RNG initialization; explicit functional dropout retained",
+    "paired reconstruction and full-utterance controlled evaluations"
+  ]
+}
