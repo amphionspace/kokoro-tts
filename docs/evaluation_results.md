@@ -23,6 +23,36 @@ Stage 2 相比 Stage 1 末尾，中文 CAMP 从0.5929到0.7474，混读从0.5781
 
 原始汇总：[Stage 1](evaluation/stage1_final/summary.json)、[Stage 2](evaluation/stage2_final/summary.json)；全部15次周期/阶段末评估见[CSV](evaluation/history.csv)，其中两次24条冒烟评估不能与450条全量结果直接比较。每份汇总及导出元信息都已随仓库提交，来源路径和SHA256见[清单](evaluation/sources.json)。
 
+## 与LITs IMF最终结果对比
+
+对比对象为直接训练的IMF主实验`ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915`，最终170,000步（500 epochs）的完整句子评估；推理为2步IMF＋固定24k Vocos。这里不使用150k旧表、蒸馏student或可微duration实验。Kokoro为上述Stage 2 final，累计11,760步，使用直接优化的voice与内置ISTFT解码器。
+
+已逐条核对两边450条记录的ID、分组、输入文本、ASR参考文本及speaker ID全部一致；中文/混读与英文的音色参考SHA256一致。ASR、metrics、summarize函数AST相同，底层quality_worker/quality_metrics文件字节相同。两边这450条均无评分失败。IMF原始报告还含200条LJSpeech，本表及合计均排除该组。
+
+| 语言 | 模型 | 条数 | CER micro (%) ↓ | WER micro (%) ↓ | WavLM+ECAPA ↑ | CAMPPlus ↑ | DNSMOS OVRL ↑ |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 中文 | IMF final 170k | 200 | 0.582 | — | 0.7806 | 0.7218 | 3.3685 |
+| 中文 | Kokoro Stage 2 final | 200 | 0.185 | — | 0.8301 | 0.7474 | 3.4754 |
+| 英文 | IMF final 170k | 200 | 0.377 | 0.869 | 0.7588 | 0.7879 | 3.2274 |
+| 英文 | Kokoro Stage 2 final | 200 | 0.325 | 0.821 | 0.8167 | 0.8218 | 3.3741 |
+| 混读 | IMF final 170k | 50 | 0.089 | 6.250 | 0.7290 | 0.6961 | 3.3446 |
+| 混读 | Kokoro Stage 2 final | 50 | 0.089 | 4.167 | 0.7762 | 0.7208 | 3.4494 |
+
+目标450条的下列均值按句数加权（中文200、英文200、混读50），不把各语言CER/WER直接平均：
+
+| 模型 | WavLM+ECAPA ↑ | CAMPPlus ↑ | OVRL ↑ | SIG ↑ | BAK ↑ |
+|---|---:|---:|---:|---:|---:|
+| IMF final 170k | 0.7652 | 0.7483 | 3.3032 | 3.5645 | 4.0998 |
+| Kokoro Stage 2 final | 0.8181 | 0.7775 | 3.4275 | 3.6465 | 4.1934 |
+
+这套固定文本上，Kokoro的中文CER为0.185%，低于IMF的0.582%；英文WER为0.821%对0.869%；混读CER同为0.089%，英文/数字词WER为4.167%对6.250%。Kokoro在三种语言的两项相似度与OVRL均更高，450条加权OVRL高0.1243。这些是单次现成评估的描述性结果，没有显著性检验或人工听测支持“全面更好”的结论。
+
+比较边界：两套模型的基座、前端、训练预算、声码器及训练数据构成都不同（IMF另训练LJSpeech；Kokoro为单音色且隔离9条前端不支持文本）。因此这不是同算力或只换架构的消融，也不能用170k与11,760步推断速度或训练效率。未进行统一硬件、batch、预热条件下的推理基准，不比较日志中的单条合成耗时。
+
+固定中文200条仅115条不同参考文本，英文200条有193条不同文本，混读50条均不同；上述指标保留原始重复权重，未去重，不能当作450个独立文本的测试结论。评分实现核对不能替代两次运行完整软件环境和硬件的等价性证明。
+
+证据随仓库提交：[IMF原始汇总](evaluation/imf_final/summary.json)、[170k评估checkpoint元信息](evaluation/imf_final/checkpoint_metadata.json)、[评估协议](evaluation/imf_final/eval_protocol.json)、[文本/参考/评分实现核对及加权结果](evaluation/imf_final/comparison_audit.json)。IMF此处评估checkpoint哈希为`e3b943fa698b5a72be74bebb65c082f3e62780b0555e0f6405ad458f3dc170d9`，不与最终完整训练文件的序列化哈希混用。
+
 ## 400 条配对重建与24条整句诊断
 
 这部分使用验证音频提供条件，独立于上述450条自由合成。Stage 2 final覆盖400条配对裁剪，每条至多约5秒；整句诊断按语言和时长分位固定选择24条，每个条件24条，共六种条件。没有把裁剪音频与整句文本送入ASR比较。

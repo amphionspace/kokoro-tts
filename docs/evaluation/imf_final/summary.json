@@ -1,0 +1,59 @@
+{
+  "status": "complete",
+  "checkpoint": "/119010446/tts-assets/training_runs/ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915/eval/step_00170000/checkpoint.ckpt",
+  "samples": 650,
+  "groups": {
+    "ljs_en": {
+      "samples": 200,
+      "evaluation_failures": 0,
+      "cer_mean": 0.005536013154630045,
+      "wer_mean": 0.01682774904833729,
+      "wavlm_similarity_mean": 0.64330807171762,
+      "camp_similarity_mean": 0.8372535373270512,
+      "dnsmos_ovrl_mean": 3.0287728416192774,
+      "dnsmos_sig_mean": 3.467777546663844,
+      "dnsmos_bak_mean": 3.73038258154826,
+      "cer_micro": 0.005030919190860497,
+      "wer_micro": 0.01496861419604056
+    },
+    "majestic_en": {
+      "samples": 200,
+      "evaluation_failures": 0,
+      "cer_mean": 0.00407399939859471,
+      "wer_mean": 0.008831367162249516,
+      "wavlm_similarity_mean": 0.7587973870337009,
+      "camp_similarity_mean": 0.7878804063796997,
+      "dnsmos_ovrl_mean": 3.227389753282749,
+      "dnsmos_sig_mean": 3.497323123329207,
+      "dnsmos_bak_mean": 4.076878673649041,
+      "cer_micro": 0.0037731893931453727,
+      "wer_micro": 0.008691453404152583
+    },
+    "majestic_zh": {
+      "samples": 200,
+      "evaluation_failures": 0,
+      "cer_mean": 0.006058031658146073,
+      "wer_mean": 0.0,
+      "wavlm_similarity_mean": 0.780559024810791,
+      "camp_similarity_mean": 0.7217790731787681,
+      "dnsmos_ovrl_mean": 3.3685402297461255,
+      "dnsmos_sig_mean": 3.6223961262897837,
+      "dnsmos_bak_mean": 4.118833417754514,
+      "cer_micro": 0.00582010582010582,
+      "wer_micro": null
+    },
+    "majestic_mixed": {
+      "samples": 50,
+      "evaluation_failures": 0,
+      "cer_mean": 0.0010526315789473684,
+      "wer_mean": 0.07333333333333333,
+      "wavlm_similarity_mean": 0.728968505859375,
+      "camp_similarity_mean": 0.6960708117485046,
+      "dnsmos_ovrl_mean": 3.344642150976455,
+      "dnsmos_sig_mean": 3.601904419629757,
+      "dnsmos_bak_mean": 4.11543245174912,
+      "cer_micro": 0.0008865248226950354,
+      "wer_micro": 0.0625
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "imf_run": "ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915",
+  "imf_eval_step": 170000,
+  "kokoro_eval_step": 11760,
+  "paired_rows": 450,
+  "matched_fields": [
+    "id",
+    "group",
+    "text",
+    "ref_text",
+    "speaker"
+  ],
+  "canonical_rows_sha256": "23224f53451ac58f4de0e423358a593904849086ab4be7510a161bb28d141863",
+  "unique_ref_text_counts": {
+    "majestic_zh": 115,
+    "majestic_en": 193,
+    "majestic_mixed": 50
+  },
+  "group_reference_sha256": {
+    "majestic_zh": "ba9a27c9569452da6f5fa28056a08259f3844ae9007cd0646b8837d5ed7aec26",
+    "majestic_en": "cd2abc1aaeef97e9365bbd57b4c631fdf2f0f863389c7ede5ff5edea164af13d",
+    "majestic_mixed": "ba9a27c9569452da6f5fa28056a08259f3844ae9007cd0646b8837d5ed7aec26"
+  },
+  "scoring_implementation_checks": {
+    "training/common/evaluate_checkpoint.py": {
+      "imf_source_sha256": "4398ed962794b971de23b5c0413bedde1f7cdad4e64e2ce462fc826f58a16753",
+      "kokoro_external_source_sha256": "ab03f9d4e0217c267f61d40dec70778a4e8d3e1ad435be572fe6ac9d4f3b4ef4",
+      "identical_bytes": false,
+      "identical_function_ast": {
+        "asr": true,
+        "metrics": true,
+        "summarize": true
+      }
+    },
+    "data_generation/majestic_voice/quality_worker.py": {
+      "imf_source_sha256": "86feb0547bc3a0f3b552b8b8e81f9836f7645992320aab86966b79aa3089a240",
+      "kokoro_external_source_sha256": "86feb0547bc3a0f3b552b8b8e81f9836f7645992320aab86966b79aa3089a240",
+      "identical_bytes": true
+    },
+    "data_generation/majestic_voice/quality_metrics.py": {
+      "imf_source_sha256": "85a541bfeb18ce7013ae60d0053c56218769a6b1bc050ecd7ccc1b23cd29638c",
+      "kokoro_external_source_sha256": "85a541bfeb18ce7013ae60d0053c56218769a6b1bc050ecd7ccc1b23cd29638c",
+      "identical_bytes": true
+    }
+  },
+  "sources": [
+    {
+      "source": "/119010446/tts-assets/training_runs/ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915/eval/step_00170000/summary.json",
+      "snapshot": "summary.json",
+      "sha256": "b3a3a2e7a7d5d3fbec28f5a43bdca2011d6772d2c0ff7081cbfd66f9fb4e5fd4"
+    },
+    {
+      "source": "/119010446/tts-assets/training_runs/ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915/eval/step_00170000/checkpoint_metadata.json",
+      "snapshot": "checkpoint_metadata.json",
+      "sha256": "50c9e56e9321ebd090b506b09288e012e1f1a2c755615d119c9122e927a4220b"
+    },
+    {
+      "source": "/119010446/tts-assets/training_runs/ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915/data/eval_protocol.json",
+      "snapshot": "eval_protocol.json",
+      "sha256": "2b6bc49efe9adb76153b8c4abcc547d63e4e7f8b1f007d7baf4aa698ef7ab708"
+    }
+  ],
+  "weighted_target_means": {
+    "imf": {
+      "wavlm_similarity_mean": 0.7651549059152604,
+      "camp_similarity_mean": 0.7483009699980417,
+      "dnsmos_ovrl_mean": 3.303151342565773,
+      "dnsmos_sig_mean": 3.564531268678413,
+      "dnsmos_bak_mean": 4.0998089797070385
+    },
+    "kokoro": {
+      "wavlm_similarity_mean": 0.8181396785047319,
+      "camp_similarity_mean": 0.777485949728224,
+      "dnsmos_ovrl_mean": 3.4274672691500765,
+      "dnsmos_sig_mean": 3.6465442667754786,
+      "dnsmos_bak_mean": 4.193442878174803
+    }
+  },
+  "scope": "Existing final full-utterance evaluations; no resynthesis; exclude ljs_en; not an equal-compute or architecture-only ablation"
+}

@@ -1,0 +1,7 @@
+{
+  "global_step": 170000,
+  "source_checkpoint": "/119010446/tts-assets/training_runs/ljs_majestic_100h_imf_h1_b48_from21k_500ep_20260915/evaluation_checkpoints/step_00170000.ckpt",
+  "sha256": "e3b943fa698b5a72be74bebb65c082f3e62780b0555e0f6405ad458f3dc170d9",
+  "started_at_unix": 1789560960.391271,
+  "scope": "full_650"
+}

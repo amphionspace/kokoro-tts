@@ -2,7 +2,7 @@
 
 基座为官方通用 **hexgrad/Kokoro-82M v1.0**，不使用 v1.1-zh。以 LITs 的 MajesticVoice 中文、英文、中英混合合成语音做单音色适配。
 
-文档：[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。
+文档：[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。评估文档已补充与LITs直接训练IMF最终170k的同文本对比。
 
 ## 数据与基座
 
