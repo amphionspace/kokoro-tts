@@ -22,22 +22,24 @@
 
 ## 试听和原始结果
 
-产物目录：`runs/long_text_comparison_20260922/`。
-
-[本机A/B试听页](../runs/long_text_comparison_20260922/index.html) · [便携试听包](../runs/long_text_comparison_20260922/listening.zip)。页面和WAV是本机产物，不随Git分发；在其他机器试听需复制整个目录或解压试听包。
+原产物目录`runs/long_text_comparison_20260922/`已于2026-09-22按要求删除，包含HTML、WAV和试听包；旧baseline导出也已删除。下列随仓库保存的数值结果仍保留。
 
 便于随仓库保存的纯文本结果：[汇总](evaluation/long_text_20260922/comparison.json)、[模型哈希及协议](evaluation/long_text_20260922/protocol.json)、[固定文本清单](evaluation/long_text_20260922/manifest.jsonl)、[旧模型逐条结果](evaluation/long_text_20260922/baseline/details.jsonl)、[新模型逐条结果](evaluation/long_text_20260922/long_weighted/details.jsonl)。其中原始音频路径反映本机位置。
 
-- `index.html`：原始参考录音、旧/新完整音频、单独首句音频与转写的逐条对比。
-- `listening.zip`：含页面和音频的便携包，解压后打开index.html。
-- `comparison.json`：汇总数据；两模型子目录保留synthesis/asr/metrics/details/summary。
-- `manifest.jsonl`与`protocol.json`：固定文本、音素、输入来源及模型/voice SHA256。
-- 复现合成：`python -m scripts.compare_long_text`（使用项目.venv，输出目录必须不存在）；评分复用`training.evaluate`的asr、metrics、summarize；生成页面：`python -m scripts.report_long_text`。
+重新对比时，需显式指定仍存在的baseline导出与新输出目录：
 
-本次按用户要求新增的对比产物予以保留，不进行清理。
+```bash
+.venv/bin/python -m scripts.compare_long_text \
+  --baseline-export "$PWD/runs/majestic_baseline_full_rerun_20260921/eval/stage2_final" \
+  --output "$PWD/runs/new_long_text_comparison"
+# 完成LITs asr/metrics/summarize后生成页面：
+.venv/bin/python -m scripts.report_long_text --output "$PWD/runs/new_long_text_comparison"
+```
+
+完整重跑baseline是不同权重，新对比不能当作本报告旧结果的精确复现。恢复原结果需要原权重备份；本机不再保留该旧导出。
 
 ## 当前Web Demo
 
-2026-09-22已启动于`http://服务器IP:32002`，加载本报告的新模型（20轮长样本加权），默认开启逐句合成。旧baseline仍保留在上面的A/B页面。当前网页没有模型选择器，切换模型需重启服务并指定导出目录；见[Demo操作说明](../demo/README.md)。
+2026-09-22已启动于`http://服务器IP:32002`，加载本报告的新模型（20轮长样本加权），默认开启逐句合成。旧baseline的离线A/B页面已删除，历史数值保留。当前网页没有模型选择器，切换模型需重启服务并指定导出目录；见[Demo操作说明](../demo/README.md)。
 
 本报告的所有完整段落结果均为**关闭分句**时的直接生成。网页默认分句属于工程上的缓解方式，试听时应区分这两种模式。

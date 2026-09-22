@@ -22,5 +22,20 @@
     "Stage 2 learned fixed voice mixed with reference styles after 1000 steps",
     "single-layer DurationEncoder LSTM dropout=0 to avoid redundant cuDNN RNG initialization; explicit functional dropout retained",
     "paired reconstruction and full-utterance controlled evaluations"
-  ]
+  ],
+  "kokoro_7m": {
+    "repository": "https://huggingface.co/oddadmix/Kokoro-7M-Distill",
+    "revision": "9357717e6499717b769ab65de61797aa7c501c86",
+    "license": "Apache-2.0",
+    "architecture": "vendor/kokoro7m",
+    "student_config": "configs/student_7m.json",
+    "published_weights_audit": {
+      "repository": "oddadmix/Kokoro-7M-Distill",
+      "revision": "9357717e6499717b769ab65de61797aa7c501c86",
+      "sha256": "9141c14220e26a16f3b6f3c4f3188aa7d0887dffe1be84b073c75cd06c77e75a",
+      "bytes": 30096222
+    },
+    "training_initialization": "random; published weights used only for strict architecture audit"
+  },
+  "asset_manifest": "configs/model_assets.json"
 }

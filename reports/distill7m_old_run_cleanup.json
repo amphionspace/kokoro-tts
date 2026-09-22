@@ -1,0 +1,130 @@
+{
+  "deleted_run": "runs/majestic_student7m_20260922",
+  "reason": "User requested deletion after full-window supervision restart",
+  "replacement": "runs/majestic_student7m_boundary_20260922",
+  "deleted_at": 1790065008.2538302,
+  "restart_record.json": {
+    "status": "stopped_for_boundary_retraining",
+    "updated_at": 1790053577.0490718,
+    "replacement": "majestic_student7m_boundary_20260922",
+    "previous_status": {
+      "status": "training",
+      "step": 10620,
+      "budget_steps": 20000,
+      "epoch": 13,
+      "world_size": 4,
+      "batch_size_per_gpu": 16,
+      "samples_per_second": 101.69662608720527,
+      "peak_memory_gb": 20.776891231536865,
+      "losses": {
+        "duration": 0.19454695284366608,
+        "f0": 0.9380912780761719,
+        "energy": 0.38623422384262085,
+        "stft": 1.2128779888153076,
+        "mel": 0.44515982270240784,
+        "silence": 9.931850945577025e-05,
+        "silent_fraction": 0.08119791746139526,
+        "wavlm": 1.0478712320327759,
+        "gan_adversarial": 2.522639036178589,
+        "gan_features": 3.390625,
+        "gan_relative": 0.18784311413764954,
+        "loss": 17.746158599853516,
+        "discriminator": 3.646702289581299,
+        "grad_norm": 58.2310791015625,
+        "discriminator_grad_norm": 15.045604705810547,
+        "generated_peak": 0.42041015625,
+        "lr": 0.00010126287816092372
+      },
+      "updated_at": 1790053569.7509086
+    },
+    "latest_checkpoint": {
+      "path": "/119010446/Kokoro-TTS-ZH/runs/majestic_student7m_20260922/checkpoints/step_00010000.pt",
+      "step": 10000
+    },
+    "stopped_pids": [
+      110154,
+      110165,
+      110166,
+      110167,
+      110171,
+      110172,
+      110173,
+      110174,
+      110176,
+      128711,
+      128712,
+      128713,
+      128714,
+      128719,
+      128720,
+      128721,
+      128722,
+      128727,
+      128728,
+      128729,
+      128730,
+      128735,
+      128736,
+      128737,
+      128742
+    ]
+  },
+  "best.json": {
+    "criterion": "min equal-language mean of zh CER, en WER, mixed CER; tie-break max mean CAMP; full 450 only",
+    "asr_score": 0.008402554107596041,
+    "mean_camp": 0.744494557181994,
+    "step": 10000,
+    "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_student7m_20260922/checkpoints/step_00010000.pt",
+    "export": "/119010446/Kokoro-TTS-ZH/runs/majestic_student7m_20260922/eval/step_00010000",
+    "summary": {
+      "status": "complete",
+      "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_student7m_20260922/checkpoints/step_00010000.pt",
+      "samples": 450,
+      "groups": {
+        "majestic_en": {
+          "samples": 200,
+          "evaluation_failures": 0,
+          "cer_mean": 0.00957805626605046,
+          "wer_mean": 0.018063385144267505,
+          "wavlm_similarity_mean": 0.7670698983967305,
+          "camp_similarity_mean": 0.78383187353611,
+          "dnsmos_ovrl_mean": 3.094040215416083,
+          "dnsmos_sig_mean": 3.3300842536884274,
+          "dnsmos_bak_mean": 4.067020057500047,
+          "cer_micro": 0.007756000419243266,
+          "wer_micro": 0.0159343312409464
+        },
+        "majestic_zh": {
+          "samples": 200,
+          "evaluation_failures": 0,
+          "cer_mean": 0.006553242651068738,
+          "wer_mean": 0.0,
+          "wavlm_similarity_mean": 0.7993348473310471,
+          "camp_similarity_mean": 0.7365263104438782,
+          "dnsmos_ovrl_mean": 3.078112928599274,
+          "dnsmos_sig_mean": 3.454851482496237,
+          "dnsmos_bak_mean": 3.8327418595562897,
+          "cer_micro": 0.006613756613756613,
+          "wer_micro": null
+        },
+        "majestic_mixed": {
+          "samples": 50,
+          "evaluation_failures": 0,
+          "cer_mean": 0.0030433723196881092,
+          "wer_mean": 0.03333333333333333,
+          "wavlm_similarity_mean": 0.7417563557624817,
+          "camp_similarity_mean": 0.7131254875659943,
+          "dnsmos_ovrl_mean": 3.0248268079160927,
+          "dnsmos_sig_mean": 3.4156555737919128,
+          "dnsmos_bak_mean": 3.7941094888022544,
+          "cer_micro": 0.0026595744680851063,
+          "wer_micro": 0.041666666666666664
+        }
+      }
+    }
+  },
+  "latest_checkpoint.json": {
+    "path": "/119010446/Kokoro-TTS-ZH/runs/majestic_student7m_20260922/checkpoints/step_00010000.pt",
+    "step": 10000
+  }
+}

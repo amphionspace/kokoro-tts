@@ -1,9 +1,12 @@
 """Aggregate the paired long-text comparison and write a portable listening page."""
-import html,json,statistics,shutil
+import argparse,html,json,statistics,shutil
 from pathlib import Path
 from training.common import ROOT,records,write_json
 OUT=ROOT/'runs/long_text_comparison_20260922'
 def main():
+    global OUT
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
+    OUT=parser.parse_args().output.resolve()
     data={label:{r['id']:r for r in records(OUT/label/'details.jsonl')} for label in ('baseline','long_weighted')}
     summary={}
     for lang in ('zh','en','mixed'):

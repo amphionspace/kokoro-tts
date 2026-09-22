@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 STATIC = Path(__file__).parent / 'static'
-DEFAULT_EXPORT = ROOT / 'runs/majestic_v1_20260920/eval/stage2_final'
+DEFAULT_EXPORT = ROOT / 'runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final'
 logger = logging.getLogger('kokoro.demo')
 
 

@@ -6,7 +6,13 @@
 
 20轮长样本加权实验已完成，最终450条常规评估无失败；原baseline的完整重跑（Stage 1四轮、Stage 2十轮）及最终评估也已完成。实验方案见[长文问题与采样策略](docs/long_text_duration.md)，最新结果见[长文本A/B对比](docs/long_text_comparison_20260922.md)。小样本中中文/混读的首句缩短略有缓解，尚未解决长上下文加速问题。
 
-完整baseline重跑位于`runs/majestic_baseline_full_rerun_20260921`，保留全部checkpoint、评估及日志，不进行自动清理。后台交接记录为`handoff_status.json`和`progress_checks.jsonl`，监督脚本为`scripts/supervise_baseline_rerun.py`。TensorBoard：旧baseline与加权实验对比使用**32003**，完整重跑使用**32004**。本次长文本对比使用旧baseline导出，未包含重跑模型。
+完整baseline重跑位于`runs/majestic_baseline_full_rerun_20260921`，保留全部checkpoint、评估及日志，不进行自动清理。后台交接记录为`handoff_status.json`和`progress_checks.jsonl`，监督脚本为`scripts/supervise_baseline_rerun.py`。TensorBoard：完整重跑baseline与加权实验对比使用**32003**，完整重跑使用**32004**。历史长文本对比使用旧baseline导出，未包含重跑模型；旧导出和一次性试听产物现已按要求删除，表格及JSON保留。
+
+## 7.48M学生蒸馏
+
+已按[蒸馏方案](docs/distillation_7m_plan.md)从随机初始化重训 `runs/majestic_student7m_boundary_20260922`，以20轮82M模型为教师，中文/英文/混读共同训练。四卡每卡batch16、全局64，20,000步预算。均匀随机截取约3秒窗口，完整窗口参与声学损失，不额外抽样首尾。旧蒸馏因首尾声学监督缺口已停止并按要求删除，见[清理记录](reports/distill7m_old_run_cleanup.json)。
+
+TensorBoard统一使用 **32003**，重训曲线为 `student7m_boundary_train` / `student7m_boundary_eval`，同时保留baseline和82M教师曲线；独立32005已关闭。正式音质仍待评价。
 
 ## 网页 Demo
 
@@ -19,7 +25,7 @@ CUDA_VISIBLE_DEVICES=0 .venv/bin/python demo/server.py \
   --export-dir "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final"
 ```
 
-省略`--export-dir`仍会加载旧10轮baseline。模型路径、后台启动方法、日志和接口见[Demo说明](demo/README.md)；固定文本的逐条A/B试听包见[长文本对比报告](docs/long_text_comparison_20260922.md)。
+默认导出目录也已改为20轮加权模型。模型路径、后台启动方法、日志和接口见[Demo说明](demo/README.md)；固定文本的历史A/B数值结论见[长文本对比报告](docs/long_text_comparison_20260922.md)。
 
 ## 数据与基座
 
@@ -34,7 +40,7 @@ CUDA_VISIBLE_DEVICES=0 .venv/bin/python demo/server.py \
 
 入口 `training/train.py`，Stage 1 配置 `configs/train.json`，Stage 2 配置 `configs/stage2.json`。四卡 DDP：Stage 1 训练声学解码、音色编码、文本编码与对齐；Stage 2 训练时长、F0、能量及韵律编码，再联合微调音色与解码器。保留波形判别器、谱重建和冻结 WavLM 感知损失，不使用扩散模型或 SLM OOD 对抗分支。
 
-训练架构从固定版本的社区代码整理到 `vendor/styletts2`，推理实现位于 `vendor/kokoro`。保留权重归一化结构、许可证及来源，修正参数加载和推理 AdaIN 参数不兼容问题。详情见 `provenance/` 和 `reports/community_flow_review.md`；该报告中的原始路径是调研时的历史位置。
+训练架构从固定版本的社区代码整理到 `vendor/styletts2`，推理实现位于 `vendor/kokoro`。保留权重归一化结构、许可证及来源，修正参数加载和推理 AdaIN 参数不兼容问题。详情见 `vendor/sources.json` 和 `reports/community_flow_review.md`；该报告中的原始路径是调研时的历史位置。
 
 新音色编码器以原生 voice 向量附近的小扰动初始化，避免零附近的随机 style 令预训练 ISTFT 解码器输出极大幅值。Stage 2 复制已训练编码器特征后，以原生韵律向量初始化韵律输出头。文本编码器采用 FP32，避免 packed LSTM 的 BF16 反向异常；其余路径使用 BF16。
 
@@ -80,7 +86,9 @@ nvidia-smi
 
 ## 清理后的目录
 
-`runs/`保留新Stage 2实验、旧Stage 2必要基线、网页服务及TensorBoard对比配置，旧目录仅保留Stage 2基线部署模型、结果及相关曲线。一次性长文分析脚本、数据和试听WAV已清理，结论统一保存在[长文说明](docs/long_text_duration.md)。新实验的冻结源码快照保留；旧诊断和冻结源码已清理。
+`runs/`只保留正式7M训练、20轮82M教师实验、完整baseline重跑、Web Demo和TensorBoard对比配置。蒸馏预检、benchmark及临时评分目录已清理，结论保存在`reports/distill7m_preflight*`；正式checkpoint和评估保留。
+
+`provenance/`的冗余上游副本已移除。必要源码、许可证和版本信息在`vendor/`，下载及校验清单在`configs/model_assets.json`，原调研探针所需最小片段在`scripts/review_sources/`。
 
 ## 仓库内容
 

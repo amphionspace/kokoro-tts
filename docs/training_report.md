@@ -22,7 +22,7 @@
 
 训练另外引入声学/韵律编码器、ASRCNN对齐器、冻结JDC音调提取器、MPD/多分辨率谱判别器及冻结WavLM感知网络。它们用于提供条件、监督与损失，不都属于82M推理网络。没有训练diffusion或SLM OOD对抗分支。
 
-架构整理自固定版本的kikiri-tts及其StyleTTS2/Kokoro子模块，本项目自行适配训练驱动。来源与许可证保留在`provenance/`和`vendor/`。官方基座五组权重严格加载，不忽略缺失参数。辅助编码器输出围绕原生`zf_xiaobei`向量初始化，避免随机近零style导致的解码幅值异常；该原生音色只提供稳定起点。
+架构整理自固定版本的kikiri-tts及其StyleTTS2/Kokoro子模块，本项目自行适配训练驱动。来源与许可证保留在`vendor/`。官方基座五组权重严格加载，不忽略缺失参数。辅助编码器输出围绕原生`zf_xiaobei`向量初始化，避免随机近零style导致的解码幅值异常；该原生音色只提供稳定起点。
 
 ## 2. 训练数据
 
@@ -196,10 +196,24 @@ checkpoint保存模型、优化器、逐rank随机状态、buffer、数据哈希
 
 ## 8. 导出、网页与下一步
 
-最终部署使用`eval/stage2_final/kokoro.pth`、`majestic.pt`及基座config。模型与WAV留在本机，不入Git；最终checkpoint哈希见[导出元信息](evaluation/stage2_final/export.json)。2026-09-22网页加载20轮长样本加权最终导出；省略`--export-dir`仍加载旧baseline。启动相同模型的命令：
+最终部署使用`eval/stage2_final/kokoro.pth`、`majestic.pt`及基座config。模型与WAV留在本机，不入Git；最终checkpoint哈希见[导出元信息](evaluation/stage2_final/export.json)。2026-09-22网页加载20轮长样本加权最终导出；默认路径也已切换为20轮加权模型。启动相同模型的命令：
 
 ```bash
 .venv/bin/python demo/server.py --host 0.0.0.0 --port 32002 --export-dir "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final"
 ```
 
 网页支持中英文/混读、语速和下载；详见[Demo文档](../demo/README.md)。网页默认按句末标点及换行分块，可关闭对比；中英文逗号不切。语速滑块不是长度效应修复。后续质量判断还需长文配对诊断、独立保留集评价和人工试听；本轮固定文本低CER不能替代这些检查。
+
+## 9. 自建7.48M学生蒸馏（进行中）
+
+2026-09-22启动`majestic_student7m_20260922`。参考Kokoro-7M-Distill的缩窄结构和教师音频＋教师时长蒸馏路线，独立构建7,477,702参数学生，从随机初始化训练。完整保留通用v1.0音素表，覆盖中文、英文和混读，使用本报告第7节20轮82M模型作为教师及同一固定大气女声voice。
+
+教师给53,723条训练文本和400条验证文本分别生成音频、整数音素时长、F0及能量。音频与时长来自同一次生成，不使用CTC，也不将预测时长套到原始录音上。缓存逐条校验采样数、时长帧数及来源划分；训练约100.65小时、验证约0.77小时，无削波记录。
+
+按用户选择使用四卡、每卡batch16、全局64，预算20,000步。目标结合多分辨率STFT、log-Mel、duration、静音、冻结WavLM、F0/能量及GAN；每1000步保存、验证并执行450条自由合成评价，第100步先做24条冒烟。候选按完整评价的ASR指标选择，并记录音色/音质，不默认最后一步最优。正式学生尚在训练，不能将预检当作有效音质结果。
+
+完整结构、损失权重、初始化、预检、恢复限制和运行命令见[7M蒸馏方案](distillation_7m_plan.md)。TensorBoard端口32005；训练日志为`runs/majestic_student7m_20260922/train.log`。正式产物、82M教师及两个baseline均保留，不自动清理。
+
+2026-09-22后续清理：按要求删除旧`majestic_v1_20260920`运行及一次性长文本试听目录，仅保留本文与仓库JSON历史结果；完整重跑baseline、20轮教师和当前7M训练均保留。TensorBoard 32003的baseline现指完整重跑，曲线名标注`baseline_rerun`。
+
+2026-09-22后续修正：旧7M蒸馏存在首尾声学监督缺口，已停止并按用户要求删除。当前 `runs/majestic_student7m_boundary_20260922` 从随机初始化重训，均匀随机裁剪并对整个窗口计算损失，不额外抽样首尾。TensorBoard统一32003；旧运行清理记录见 `reports/distill7m_old_run_cleanup.json`。

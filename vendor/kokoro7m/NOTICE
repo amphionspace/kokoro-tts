@@ -1,0 +1,4 @@
+Kokoro-7M-Distill by oddadmix, Apache-2.0 model repository.
+https://huggingface.co/oddadmix/Kokoro-7M-Distill/tree/9357717e6499717b769ab65de61797aa7c501c86
+Based on Kokoro / StyleTTS2; upstream copyright and license retained.
+Local change: custom_stft import made relative for isolation from the 82M teacher.

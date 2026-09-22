@@ -8,8 +8,8 @@
 
 | 模型 | 导出目录（相对项目根目录） | 用途 |
 |---|---|---|
-| 旧baseline，Stage 2十轮 | `runs/majestic_v1_20260920/eval/stage2_final` | 原基线，也是程序默认路径 |
-| 延长至二十轮并提高长样本占比 | `runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final` | 当前网页加载 |
+| 旧baseline，Stage 2十轮 | 已删除 | 历史指标保留在文档，不再可加载 |
+| 延长至二十轮并提高长样本占比 | `runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final` | 当前网页加载，也是程序默认路径 |
 | 完整重跑，Stage 1四轮＋Stage 2十轮 | `runs/majestic_baseline_full_rerun_20260921/eval/stage2_final` | 已完成，当前网页未加载 |
 
 网页不提供模型下拉切换。切换模型需要停止原实例后以不同的`--export-dir`重新启动；不要在同一端口重复启动。`/healthz`中的model字段是通用名称，具体加载路径查本机`runs/web_demo/server.json`。这份文件记录当前后台实例；自行重启后应同步更新记录。
@@ -45,7 +45,7 @@ tail -n 50 runs/web_demo/server.log
 
 访问`http://服务器IP:32002`。默认使用可见的第一张GPU，CUDA不可用时回退CPU；可通过`--device cpu`或`--device cuda:0`显式指定。GPU选择也可用`CUDA_VISIBLE_DEVICES`控制。模型只加载一次，服务单进程运行，不应设置多个Uvicorn workers。
 
-默认模型目录为`runs/majestic_v1_20260920/eval/stage2_final`，必须包含：
+默认模型目录为`runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final`，必须包含：
 
 - `kokoro.pth`：已训练的五组Kokoro推理权重。
 - `majestic.pt`：导出的`[510,1,256]`固定大气女声voicepack。
@@ -81,7 +81,7 @@ curl http://127.0.0.1:32002/api/synthesize \
 
 ## 长文本试听方法与结果
 
-旧baseline与当前模型的固定15组长文本比较见[对比报告](../docs/long_text_comparison_20260922.md)，产物保存在`runs/long_text_comparison_20260922/`。打开`index.html`可逐条对照原始参考、旧/新模型整段音频、单独首句和ASR转写；也可下载`listening.zip`，解压后打开页面。
+旧baseline与当前模型的固定15组长文本比较见[对比报告](../docs/long_text_comparison_20260922.md)。一次性试听目录、音频包及旧baseline导出已按要求删除，JSON与文档结果保留。完整重跑baseline仍有checkpoint和最终导出，可以用于新的对比，但不是历史报告中的同一份旧权重。
 
 测试模型本身的长上下文行为时，保持相同文本、speed=1，关闭“每句一块”。测试实际逐句朗读体验时再开启分句。两种模式应分别比较，不能用分句效果证明模型的长上下文时长偏差已消失。
 

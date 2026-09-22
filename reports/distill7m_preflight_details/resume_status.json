@@ -1,0 +1,30 @@
+{
+  "status": "training",
+  "step": 3,
+  "budget_steps": 10000,
+  "epoch": 3,
+  "world_size": 4,
+  "batch_size_per_gpu": 3,
+  "samples_per_second": 6.155214883863747,
+  "peak_memory_gb": 4.320675849914551,
+  "losses": {
+    "duration": 1.0206670761108398,
+    "f0": 15.141074180603027,
+    "energy": 5.819452285766602,
+    "stft": 5.27553653717041,
+    "mel": 3.138761043548584,
+    "silence": 0.08556663990020752,
+    "silent_fraction": 0.05624816194176674,
+    "wavlm": 3.005784511566162,
+    "gan_adversarial": 3.4156765937805176,
+    "gan_features": 4.03271484375,
+    "gan_relative": 0.002782221883535385,
+    "loss": 87.14896392822266,
+    "discriminator": 5.781435966491699,
+    "grad_norm": 132.8396759033203,
+    "discriminator_grad_norm": 5.710752487182617,
+    "generated_peak": 0.47119140625,
+    "lr": 0.0001999999803956598
+  },
+  "updated_at": 1790044884.1089382
+}

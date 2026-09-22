@@ -20,7 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--verify-only', action='store_true')
     args = parser.parse_args()
-    assets = json.loads((ROOT / 'provenance/model_assets.json').read_text())
+    assets = json.loads((ROOT / 'configs/model_assets.json').read_text())
     for asset in assets:
         target = ROOT / asset['path']
         if target.exists():

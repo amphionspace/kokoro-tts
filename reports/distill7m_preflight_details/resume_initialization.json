@@ -1,0 +1,47 @@
+{
+  "initial_weights": null,
+  "load": {
+    "parameters": 7477702,
+    "loaded_parameters": 0,
+    "initialization": "random_student_own_teacher",
+    "duration_initial_mean_frames": 2.0451745379876796
+  },
+  "config": {
+    "seed": 20260922,
+    "initial_weights": null,
+    "teacher_export": "runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final",
+    "steps": 10000,
+    "batch_size": 3,
+    "workers": 0,
+    "cpu_threads": 2,
+    "bf16": true,
+    "crop_frames": 120,
+    "context_frames": 20,
+    "lr": 0.0002,
+    "discriminator_lr": 0.0002,
+    "warmup_steps": 1,
+    "gan_warmup": 0,
+    "stft_weight": 5.0,
+    "mel_weight": 5.0,
+    "duration_weight": 5.0,
+    "silence_weight": 100.0,
+    "wavlm_weight": 1.0,
+    "f0_weight": 1.0,
+    "energy_weight": 1.0,
+    "log_every": 1,
+    "checkpoint_every": 2,
+    "validate_every": 2,
+    "evaluate_every": 2,
+    "early_evaluation_step": 2,
+    "duration_bias_from_train": true
+  },
+  "identity": {
+    "train": "ed5a9d3f3d38af9036daf9613a9b04e217420a7ed4e40aa44f1dd1f3ad798845",
+    "val": "647149154fb4d39680ba9a625b28ac052f6ba7cf839959d2e6279543e798b65f",
+    "teacher_protocol": "6fcc17c091059a1ab64788d62f5e22ea1bdfc30b8ffd3b5a7b3817dc77ee949c",
+    "architecture": "4e203206481813c0d3cb9e1b8c308d54c10f9e416dd6931036deb2c7e03b241e",
+    "voice": "74e915caa70cccd5c6af7652f7922194ee05c3964bef33fe17a23d9575472cb1"
+  },
+  "world_size": 4,
+  "resumed": "/119010446/Kokoro-TTS-ZH/runs/distill7m_preflight_ddp/checkpoints/step_00000002.pt"
+}

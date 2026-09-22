@@ -8,16 +8,16 @@
 |---|---|
 | `configs/project.json` | 通用Kokoro v1.0的仓库、revision、数据路径 |
 | `configs/train.json`、`configs/stage2.json` | 两阶段训练超参数及Stage 2可学习voice配置 |
-| `models/Kokoro-82M/config.json` | 基座网络结构、音素词表；与`provenance/base_config.json`一致 |
+| `models/Kokoro-82M/config.json` | 基座网络结构、音素词表；原始文件SHA256列于`configs/model_assets.json` |
 | `models/wavlm-base-plus/config.json` | 冻结WavLM感知网络的结构配置 |
 | `vendor/styletts2/Utils/ASR/config.yml` | ASRCNN对齐器结构配置；加载其中`model_params` |
 | `vendor/styletts2/Utils/PLBERT/config.yml` | 上游兼容配置；本项目实际使用Kokoro自带BERT参数，不需另下载PLBERT权重 |
-| `vendor/`、`provenance/` | 必要源码、许可证、上游提交号与原始审计记录 |
+| `vendor/`、`configs/model_assets.json` | 必要源码、许可证、上游提交号与原始审计记录 |
 | `requirements.txt` | 实测训练/前端依赖版本；不等于包含所有间接依赖的完整lockfile |
 
 ## 模型与辅助权重
 
-完整文件列表、固定下载URL、文件大小、SHA256见[`model_assets.json`](../provenance/model_assets.json)。配置小文件随Git提交，其余按清单下载：
+完整文件列表、固定下载URL、文件大小、SHA256见[`model_assets.json`](../configs/model_assets.json)。配置小文件随Git提交，其余按清单下载：
 
 ```bash
 python scripts/download_assets.py
@@ -35,7 +35,7 @@ python scripts/download_assets.py --verify-only
 
 ASR/JDC是训练辅助网络，不是最终部署模型。`zf_xiaobei.pt`用于稳定初始化及Stage 1的原生韵律诊断，不是训练目标女声的最终voice。
 
-架构来自[semidark/kikiri-tts](https://github.com/semidark/kikiri-tts/tree/a12d0410e89841e6f3c09958ae5c072f90ae1d49)，其中StyleTTS2子模块固定如上，Kokoro子模块为[semidark/kokoro](https://github.com/semidark/kokoro/tree/b96fef95e6a746495f92443fac7c688f90fc57fc)。项目有自己的训练驱动和兼容修复，改动及许可证见[`provenance/sources.json`](../provenance/sources.json)、`vendor/*/LICENSE`和`provenance/kikiri_LICENSE`、`kikiri_NOTICE`。
+架构来自[semidark/kikiri-tts](https://github.com/semidark/kikiri-tts/tree/a12d0410e89841e6f3c09958ae5c072f90ae1d49)，其中StyleTTS2子模块固定如上，Kokoro子模块为[semidark/kokoro](https://github.com/semidark/kokoro/tree/b96fef95e6a746495f92443fac7c688f90fc57fc)。项目有自己的训练驱动和兼容修复，改动及许可证见[`vendor/sources.json`](../vendor/sources.json)、`vendor/*/LICENSE`和`vendor/kikiri_LICENSE`、`vendor/kikiri_NOTICE`。
 
 ## Python环境
 
@@ -60,6 +60,6 @@ Misaki使用`en.G2P(trf=False)`、美式英语、EspeakFallback以及`zh.ZHG2P(v
 
 `training/evaluate.py`与诊断脚本调用本机`/119010446/LITs/training/common/evaluate_checkpoint.py`及LITs的数据质检模块；`scripts/watch_evaluation.py`使用独立ASR和metrics Python环境。它们尚未全部打包到本仓库，克隆仓库后不能把本机绝对路径直接当作可移植安装。
 
-复现评分还需准备Qwen3-ASR-1.7B、WavLM/CAMPPlus、DNSMOS及LITs评价实现、450条固定文本和语言参考。现有评估汇总已随Git提交，可直接查看；重新评分需要先配置这些外部依赖。冻结模型和数据来源的审计文件位于`provenance/`和`reports/`；历史报告保留当时路径，不表示其他机器也具有该路径。
+复现评分还需准备Qwen3-ASR-1.7B、WavLM/CAMPPlus、DNSMOS及LITs评价实现、450条固定文本和语言参考。现有评估汇总已随Git提交，可直接查看；重新评分需要先配置这些外部依赖。冻结模型和数据来源的审计文件位于`vendor/sources.json`和`reports/`；历史报告保留当时路径，不表示其他机器也具有该路径。
 
 运行时的训练/评价源码快照与大体积checkpoint留在本机`runs/majestic_v1_20260920`。仓库中的源码用于后续维护；准确重现本轮数值应同时保留运行快照、数据哈希及`docs/evaluation/`中的协议信息。

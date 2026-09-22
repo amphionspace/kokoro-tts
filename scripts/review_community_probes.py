@@ -12,7 +12,7 @@ import soundfile as sf
 torch.set_num_threads(2)
 torch.manual_seed(42)
 root = Path(__file__).resolve().parents[1]
-up = root / 'provenance/review_sources'
+up = root / 'scripts/review_sources'
 report = {'scope': 'Mechanism probes, not end-to-end training or quality measurements', 'torch': torch.__version__, 'torchaudio': torchaudio.__version__}
 # Execute exactly the checkpoint loader from the reviewed source without importing its training dependencies.
 tree = ast.parse((up / 'load_checkpoint.py').read_text())

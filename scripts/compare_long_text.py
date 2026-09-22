@@ -1,5 +1,5 @@
 """Paired long-input evaluation; no sentence chunking or token truncation."""
-import json, re, shutil, hashlib
+import argparse, json, re, shutil, hashlib
 from pathlib import Path
 import torch, soundfile as sf
 from training.common import ROOT, records, write_json, digest
@@ -7,7 +7,7 @@ from training.frontend import Frontend
 from kokoro import KModel
 
 OUT=ROOT/'runs/long_text_comparison_20260922'
-EXPORTS={'baseline':ROOT/'runs/majestic_v1_20260920/eval/stage2_final',
+EXPORTS={'baseline':None,
          'long_weighted':ROOT/'runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final'}
 CUSTOM={
 'zh':'傍晚的时候，我们沿着河边慢慢往前走。远处的路灯一盏接着一盏亮了起来，水面上倒映着暖黄色的光。走到桥下时，朋友忽然停下来，说他想起了小时候住过的地方。我们没有急着回家，而是在附近找了一家小店，坐下来聊了很久。',
@@ -15,6 +15,14 @@ CUSTOM={
 'mixed':'今天我们要介绍新的training流程。首先检查每个batch中的文本和音频，确认它们的内容一致，然后再开始训练。完成第一轮之后，我们会打开TensorBoard，查看loss曲线和生成的语音。最后把baseline和新模型放在一起，使用相同的测试文本，比较语速、停顿和音色。'}
 
 def main():
+    global OUT
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--baseline-export',type=Path,required=True,help='Explicit baseline: original export was deleted; rerun is a different model')
+    parser.add_argument('--output',type=Path,required=True)
+    args=parser.parse_args();OUT=args.output.resolve();EXPORTS['baseline']=args.baseline_export.resolve()
+    for export in EXPORTS.values():
+        for name in ['kokoro.pth','majestic.pt']:
+            if not (export/name).is_file():raise FileNotFoundError(export/name)
     torch.set_num_threads(2);torch.manual_seed(20260922)
     OUT.mkdir(exist_ok=False)
     frontend=Frontend(); selected=[]

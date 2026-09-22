@@ -544,7 +544,7 @@ http://服务器地址:32003/
 8. **可恢复和可观察**：逐 rank 状态、数据哈希、固定源码快照、TensorBoard、LITs 异步评价。
 9. **训练范围**：保留波形 GAN 与冻结 WavLM 感知损失，当前不启用 diffusion 或 SLM OOD 对抗分支。
 
-`upstream/` 已删除。运行所需源代码在 `vendor/`，ASR/JDC 权重在 `models/auxiliary/`，原始许可证、提交号和审计用最小源码快照在 `provenance/`。删除 upstream 后调研探针重新运行通过，当前训练不依赖已删除目录。
+`upstream/` 已删除。运行所需源代码在 `vendor/`，ASR/JDC 权重在 `models/auxiliary/`，原始许可证和提交号在 `vendor/`，审计探针所需最小源码在 `scripts/review_sources/`。删除 upstream 后调研探针重新运行通过，当前训练不依赖已删除目录。
 
 ## 14. 已验证与仍需观察的部分
 
@@ -579,4 +579,4 @@ http://服务器地址:32003/
 | 前端审计 | [`reports/frontend_audit.json`](../reports/frontend_audit.json) |
 | 预检记录 | [`reports/training_preflight.md`](../reports/training_preflight.md) |
 | 恢复一致性检查 | [`reports/resume_check.json`](../reports/resume_check.json) |
-| 源码及许可证来源 | [`provenance/sources.json`](../provenance/sources.json) |
+| 源码及许可证来源 | [`vendor/sources.json`](../vendor/sources.json) |

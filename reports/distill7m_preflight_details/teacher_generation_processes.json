@@ -1,0 +1,69 @@
+{
+  "started_at": 1790044287.855975,
+  "processes": [
+    {
+      "rank": 0,
+      "pid": 106322,
+      "command": [
+        "/119010446/Kokoro-TTS-ZH/.venv/bin/python",
+        "-u",
+        "-m",
+        "distillation.dump_teacher",
+        "--output",
+        "/119010446/Kokoro-TTS-ZH/data/distill7m_teacher_long20",
+        "--rank",
+        "0",
+        "--world-size",
+        "4"
+      ]
+    },
+    {
+      "rank": 1,
+      "pid": 106323,
+      "command": [
+        "/119010446/Kokoro-TTS-ZH/.venv/bin/python",
+        "-u",
+        "-m",
+        "distillation.dump_teacher",
+        "--output",
+        "/119010446/Kokoro-TTS-ZH/data/distill7m_teacher_long20",
+        "--rank",
+        "1",
+        "--world-size",
+        "4"
+      ]
+    },
+    {
+      "rank": 2,
+      "pid": 106324,
+      "command": [
+        "/119010446/Kokoro-TTS-ZH/.venv/bin/python",
+        "-u",
+        "-m",
+        "distillation.dump_teacher",
+        "--output",
+        "/119010446/Kokoro-TTS-ZH/data/distill7m_teacher_long20",
+        "--rank",
+        "2",
+        "--world-size",
+        "4"
+      ]
+    },
+    {
+      "rank": 3,
+      "pid": 106325,
+      "command": [
+        "/119010446/Kokoro-TTS-ZH/.venv/bin/python",
+        "-u",
+        "-m",
+        "distillation.dump_teacher",
+        "--output",
+        "/119010446/Kokoro-TTS-ZH/data/distill7m_teacher_long20",
+        "--rank",
+        "3",
+        "--world-size",
+        "4"
+      ]
+    }
+  ]
+}

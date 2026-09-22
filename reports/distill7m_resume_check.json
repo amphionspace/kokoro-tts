@@ -1,0 +1,18 @@
+{
+  "model": {
+    "max_absolute_difference": 0.00030279532074928284,
+    "rms_difference": 1.2401894725113336e-06,
+    "values_above_1e_5": 3902,
+    "values": 7478602
+  },
+  "critics": {
+    "max_absolute_difference": 7.450580596923828e-09,
+    "rms_difference": 3.0535071602664314e-11,
+    "values_above_1e_5": 0,
+    "values": 41386672
+  },
+  "sampler_position_equal": true,
+  "cpu_rng_equal": true,
+  "cuda_rng_equal": true,
+  "note": "3 uninterrupted steps vs resume step 2 then one step; forward loss values agree at logged precision. CUDA backward is not bitwise deterministic; exact state restoration does not promise bitwise-identical subsequent updates."
+}
