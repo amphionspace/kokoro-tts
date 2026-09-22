@@ -1,0 +1,16 @@
+{
+  "speed": 1,
+  "sentence_chunking": false,
+  "selection": "four longest validation texts per language plus one authored four-sentence probe per language",
+  "model_hashes": {
+    "baseline": {
+      "kokoro.pth": "a9525a5b716621f2e0a0ad01658897c06bbbcaab834cc6d0148d72a2b0f39ff0",
+      "majestic.pt": "2a7630dbc009823fa8e6ace6adf41731189adf8e8a11c754f170ff0f2fcd9dca"
+    },
+    "long_weighted": {
+      "kokoro.pth": "41aba30010f6e95fed2c53d801a4f08c6d37ea1f151a06191f9d5a0d5f0a92c9",
+      "majestic.pt": "74e915caa70cccd5c6af7652f7922194ee05c3964bef33fe17a23d9575472cb1"
+    }
+  },
+  "validation_manifest_sha256": "f1ca7b1c2294a821e67c2ffada236c14d27f0b0b7d63f20f26a4c477753b211d"
+}

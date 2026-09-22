@@ -1,0 +1,71 @@
+{
+  "zh": {
+    "baseline": {
+      "samples": 5,
+      "asr_metric": "cer",
+      "asr_micro": 0.007177033492822967,
+      "mean_seconds": 14.945,
+      "prefix_pairs": 5,
+      "prefix_change_median_percent": -10.655737704918034,
+      "camp_mean": 0.7942317366600037,
+      "dnsmos_mean": 3.4982629486040087
+    },
+    "long_weighted": {
+      "samples": 5,
+      "asr_metric": "cer",
+      "asr_micro": 0.007177033492822967,
+      "mean_seconds": 15.13,
+      "prefix_pairs": 5,
+      "prefix_change_median_percent": -9.523809523809524,
+      "camp_mean": 0.8177084445953369,
+      "dnsmos_mean": 3.4824210979535937
+    },
+    "median_paired_duration_change_percent": 1.1538461538461497
+  },
+  "en": {
+    "baseline": {
+      "samples": 5,
+      "asr_metric": "wer",
+      "asr_micro": 0.009174311926605505,
+      "mean_seconds": 13.895,
+      "prefix_pairs": 1,
+      "prefix_change_median_percent": -5.747126436781613,
+      "camp_mean": 0.8485735416412353,
+      "dnsmos_mean": 3.4975469063568765
+    },
+    "long_weighted": {
+      "samples": 5,
+      "asr_metric": "wer",
+      "asr_micro": 0.0045871559633027525,
+      "mean_seconds": 13.945,
+      "prefix_pairs": 1,
+      "prefix_change_median_percent": -6.145251396648044,
+      "camp_mean": 0.8448102235794067,
+      "dnsmos_mean": 3.493323511635581
+    },
+    "median_paired_duration_change_percent": 0.0
+  },
+  "mixed": {
+    "baseline": {
+      "samples": 5,
+      "asr_metric": "cer",
+      "asr_micro": 0.0,
+      "mean_seconds": 17.485,
+      "prefix_pairs": 5,
+      "prefix_change_median_percent": -9.999999999999998,
+      "camp_mean": 0.798959743976593,
+      "dnsmos_mean": 3.495259890568186
+    },
+    "long_weighted": {
+      "samples": 5,
+      "asr_metric": "cer",
+      "asr_micro": 0.0035906642728904844,
+      "mean_seconds": 17.685,
+      "prefix_pairs": 5,
+      "prefix_change_median_percent": -8.64864864864865,
+      "camp_mean": 0.8174506425857544,
+      "dnsmos_mean": 3.496616396137715
+    },
+    "median_paired_duration_change_percent": 0.8928571428571175
+  }
+}

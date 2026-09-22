@@ -4,18 +4,22 @@
 
 文档：[完整训练报告](docs/training_report.md)、[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。评估文档已补充与LITs直接训练IMF最终170k的同文本对比。
 
-当前实验：从旧Stage 2学习率下降前的第6000步checkpoint恢复，将总预算延长至20轮，后期提高长样本采样。配置为`configs/stage2_20ep_long.json`，运行目录为`runs/majestic_s2_20ep_long_resume6k_20260921`。[长文问题、分析结论及实验方案](docs/long_text_duration.md)。
+20轮长样本加权实验已完成，最终450条常规评估无失败；原baseline的完整重跑（Stage 1四轮、Stage 2十轮）及最终评估也已完成。实验方案见[长文问题与采样策略](docs/long_text_duration.md)，最新结果见[长文本A/B对比](docs/long_text_comparison_20260922.md)。小样本中中文/混读的首句缩短略有缓解，尚未解决长上下文加速问题。
+
+完整baseline重跑位于`runs/majestic_baseline_full_rerun_20260921`，保留全部checkpoint、评估及日志，不进行自动清理。后台交接记录为`handoff_status.json`和`progress_checks.jsonl`，监督脚本为`scripts/supervise_baseline_rerun.py`。TensorBoard：旧baseline与加权实验对比使用**32003**，完整重跑使用**32004**。本次长文本对比使用旧baseline导出，未包含重跑模型。
 
 ## 网页 Demo
 
-当前服务已关闭；以下命令可手动启动。
+2026-09-22本机服务已启动，地址为`http://服务器IP:32002`，加载**20轮长样本加权实验最终模型**。默认开启逐句合成；关闭“每句一块”可试听模型直接处理长上下文的效果。启动相同模型的命令（从项目根目录执行，已有服务时不重复启动）：
 
 ```bash
 .venv/bin/python -m pip install -r demo/requirements.txt
-.venv/bin/python demo/server.py --host 0.0.0.0 --port 32002
+CUDA_VISIBLE_DEVICES=0 .venv/bin/python demo/server.py \
+  --host 0.0.0.0 --port 32002 --device cuda:0 \
+  --export-dir "$PWD/runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final"
 ```
 
-浏览器访问`http://服务器IP:32002`，可输入中文、英文或混读文本，调节语速，试听并下载WAV。加载旧10轮Stage 2的基线导出模型（`runs/majestic_v1_20260920/eval/stage2_final`）；权重位置、部署依赖与接口见[Demo说明](demo/README.md)。
+省略`--export-dir`仍会加载旧10轮baseline。模型路径、后台启动方法、日志和接口见[Demo说明](demo/README.md)；固定文本的逐条A/B试听包见[长文本对比报告](docs/long_text_comparison_20260922.md)。
 
 ## 数据与基座
 
