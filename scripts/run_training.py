@@ -37,6 +37,11 @@ def main():
         for directory in ('training','vendor','scripts'):
             shutil.copytree(ROOT/directory,stage2_source/directory,ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copy2(args.stage2_config,run/'config_stage2.json')
+    evaluation_source=run/'source_evaluation'
+    if not evaluation_source.exists():
+        evaluation_source.mkdir()
+        for directory in ('training','vendor','scripts'):
+            shutil.copytree(ROOT/directory,evaluation_source/directory,ignore=shutil.ignore_patterns('__pycache__'))
     env=dict(os.environ,KOKORO_PROJECT_ROOT=str(ROOT),PYTHONPATH=str(source),
              CUDA_VISIBLE_DEVICES='0,1,2,3',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2',
              OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false',PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True')

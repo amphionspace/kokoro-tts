@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "original": {
+    "rows": 53723,
+    "hours": 99.9755111111122,
+    "by_language": {
+      "zh": {
+        "rows": 25323,
+        "hours": 50.000399999999885
+      },
+      "en": {
+        "rows": 16515,
+        "hours": 25.000222222222064
+      },
+      "mixed": {
+        "rows": 11885,
+        "hours": 24.97488888888888
+      }
+    }
+  },
+  "added": {
+    "rows": 9503,
+    "hours": 50.82271111111072,
+    "by_language": {
+      "zh": {
+        "rows": 4907,
+        "hours": 25.469333333333356
+      },
+      "en": {
+        "rows": 2298,
+        "hours": 12.743555555555567
+      },
+      "mixed": {
+        "rows": 2298,
+        "hours": 12.609822222222206
+      }
+    }
+  },
+  "train": {
+    "rows": 63226,
+    "hours": 150.7982222222223,
+    "by_language": {
+      "zh": {
+        "rows": 30230,
+        "hours": 75.46973333333267
+      },
+      "en": {
+        "rows": 18813,
+        "hours": 37.74377777777749
+      },
+      "mixed": {
+        "rows": 14183,
+        "hours": 37.58471111111118
+      }
+    }
+  },
+  "val": {
+    "rows": 400,
+    "hours": 0.7650666666666669,
+    "by_language": {
+      "zh": {
+        "rows": 192,
+        "hours": 0.37662222222222214
+      },
+      "en": {
+        "rows": 115,
+        "hours": 0.19333333333333336
+      },
+      "mixed": {
+        "rows": 93,
+        "hours": 0.19511111111111112
+      }
+    }
+  },
+  "test": {
+    "rows": 608,
+    "hours": 1.1044444444444441,
+    "by_language": {
+      "zh": {
+        "rows": 205,
+        "hours": 0.41542222222222247
+      },
+      "en": {
+        "rows": 294,
+        "hours": 0.4499111111111108
+      },
+      "mixed": {
+        "rows": 109,
+        "hours": 0.23911111111111114
+      }
+    }
+  },
+  "audio_headers_checked": 64234,
+  "new_data_overlap": false,
+  "heldout_and_evaluation_unchanged": true,
+  "long_audit": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922/reports/final_audit.json",
+  "long_audit_sha256": "97338b188929ce5c50e037e6fef3fc7cef9f6351136c0e12f62048f3fa3b4680",
+  "input_sha256": {
+    "/119010446/Kokoro-TTS-ZH/data/prepared/train.jsonl": "f700caca1a40f37b7e47085893f5dfa6448b5a73c5ca4a8a7e0e8072d1447b19",
+    "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922/accepted/train.jsonl": "e6093c2cee8c24767dc6d77f1c2977bde74de2217dbee3e0c796db95a5e31199"
+  },
+  "manifest_sha256": {
+    "voicepack_references.jsonl": "19889d431efaf26562645f9f5079e5969c0955f5194d2165016994a6804a1e62",
+    "eval_protocol.json": "2b6bc49efe9adb76153b8c4abcc547d63e4e7f8b1f007d7baf4aa698ef7ab708",
+    "test.jsonl": "b8a61f1c1882eca65132826791376271a1686e6fe7ea387190b63ca440161ce5",
+    "eval_manifest.jsonl": "afa1aa824309e32af8d2076720e26237089843d4eff936cb024782f971cf4685",
+    "train.jsonl": "7b57373385015e871708b523f766cc45c7d98d52293204954b9157aae648391f",
+    "val.jsonl": "f1ca7b1c2294a821e67c2ffada236c14d27f0b0b7d63f20f26a4c477753b211d"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parameters": 7477702,
+  "step": 20000,
+  "checkpoint_sha256": "851888f77c43b4a0846b15c7d064a9c789aefaa75a638d294bcb6d59090308bc",
+  "conditioning": "frozen_teacher_majestic_voice",
+  "voice_sha256": "74e915caa70cccd5c6af7652f7922194ee05c3964bef33fe17a23d9575472cb1",
+  "loader": "distillation.model.Student; strict nested loading",
+  "student_initialization": "random"
+}

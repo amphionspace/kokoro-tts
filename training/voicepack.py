@@ -15,7 +15,7 @@ class TrainableVoice(nn.Module):
 
 
 @torch.no_grad()
-def initialize_voicepack(model):
+def initialize_voicepack(model,reference_manifest=None):
     """Initialize in place; preserve optimizer identity, RNG and encoder modes."""
     import soundfile as sf
     voice = model.voicepack
@@ -32,7 +32,7 @@ def initialize_voicepack(model):
             features = Features().to(device)
             vectors = []
             with torch.autocast('cuda', enabled=False):
-                for row in records(ROOT/'data/prepared/voicepack_references.jsonl'):
+                for row in records(reference_manifest or ROOT/'data/prepared/voicepack_references.jsonl'):
                     audio, sr = sf.read(row['audio'], dtype='float32')
                     if sr != 24000 or audio.ndim != 1:
                         raise ValueError(row['audio'])

@@ -127,7 +127,12 @@ def main():
     if rank==0:
         run_lock=(run/'training.lock').open('a')
         fcntl.flock(run_lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-    prepared=ROOT/'data/prepared'
+    prepared=ROOT/config.get('prepared_directory','data/prepared')
+    if config.get('require_data_audit',False):
+        report=json.loads((prepared/'preparation_report.json').read_text())
+        if not report.get('passed'):raise ValueError('Data preparation audit failed')
+        for name,expected in report['manifest_sha256'].items():
+            if digest(prepared/name)!=expected:raise ValueError(f'Data changed after audit: {name}')
     train=SpeechDataset(prepared/'train.jsonl');val=SpeechDataset(prepared/'val.jsonl')
     data_hash=digest(prepared/'train.jsonl')
     model,audit=make_model(device,base=not bool(args.resume),
@@ -227,7 +232,7 @@ def main():
             joint=args.stage==1 or stage_step>=config['stage2_joint_step']
             if args.stage==2 and 'voicepack' in model and stage_step>=config['voicepack_start_step']:
                 from training.voicepack import initialize_voicepack
-                initialized=initialize_voicepack(model)
+                initialized=initialize_voicepack(model,prepared/'voicepack_references.jsonl')
                 if initialized and rank==0:
                     write_json(run/'voicepack_initialization.json',{'stage_step':stage_step,'global_step':global_step,
                                'references_sha256':digest(prepared/'voicepack_references.jsonl'),

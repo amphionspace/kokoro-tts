@@ -1,0 +1,18 @@
+{
+  "baseline": {
+    "path": "docs/evaluation/stage2_baseline_rerun_final/summary.json",
+    "sha256": "9b941621e2eaa36a8a3aa089f1a098eccc548456ff08b78ca7c6a2b033b90f49"
+  },
+  "teacher": {
+    "path": "docs/evaluation/stage2_long_weighted_final/summary.json",
+    "sha256": "c5dada5e54ba6979ba804b13ac96c5cc91f382d9f02ecb60fd36aa3aa8e34849"
+  },
+  "student_final": {
+    "path": "docs/evaluation/distillation_7m/student_final_summary.json",
+    "sha256": "2d26818c07a076f59618e2b5ef9169e405646e2afff4ee295194a4a7c9e6704a"
+  },
+  "student_best": {
+    "path": "docs/evaluation/distillation_7m/student_best_summary.json",
+    "sha256": "247414559f4ebf5591dd938fd7df8c72d27921a490c8b74a4427ad5a9619dc72"
+  }
+}

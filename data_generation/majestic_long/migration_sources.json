@@ -1,0 +1,30 @@
+{
+  "common.py": {
+    "source": "/119010446/LITs/data_generation/majestic_200h/common.py",
+    "sha256": "54e537a79543ab37d99bfb85d15b96250e79f9b5b7fd4aff79db6f4b78b3cbc5"
+  },
+  "run_workers.py": {
+    "source": "/119010446/LITs/data_generation/majestic_200h/run_workers.py",
+    "sha256": "f50aec61520d672dd72e02978b1b37004ec2e83a1311923a6ac2f9162542b31f"
+  },
+  "quality_worker.py": {
+    "source": "/119010446/LITs/data_generation/majestic_voice/quality_worker.py",
+    "sha256": "86feb0547bc3a0f3b552b8b8e81f9836f7645992320aab86966b79aa3089a240"
+  },
+  "quality_metrics.py": {
+    "source": "/119010446/LITs/data_generation/majestic_voice/quality_metrics.py",
+    "sha256": "85a541bfeb18ce7013ae60d0053c56218769a6b1bc050ecd7ccc1b23cd29638c"
+  },
+  "synthesize.py": {
+    "source": "/119010446/LITs/data_generation/majestic_voice/synthesize.py",
+    "sha256": "e03a121880435b6a7def60cbbaad90339994d56fa3a902e68fe63650cb222e6c"
+  },
+  "serve.sh": {
+    "source": "/119010446/LITs/data_generation/majestic_voice/serve.sh",
+    "sha256": "19a82c823edb4856d4165fe1086c8355932be6a8f36c6420598489ed7b147a2b"
+  },
+  "deploy.yaml": {
+    "source": "/119010446/LITs/data_generation/majestic_voice/deploy.yaml",
+    "sha256": "bdc34eac664e4bb90d72368b60003c8322eb0bcfd43f56150719166dc96f95cc"
+  }
+}

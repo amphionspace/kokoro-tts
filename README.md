@@ -1,5 +1,7 @@
 # Kokoro TTS ZH · 大气女声
 
+2026-09-23已启动 **82M合并数据两阶段重训**：旧100小时与新增50.82小时长文本合并，共约150.80小时；Stage 1四轮、Stage 2二十轮。数据审计和两个阶段的四卡长样本预检均已通过，配置和运行路径见[本次训练说明](docs/combined150h_training_20260923.md)。启动进度为 `runs/majestic_combined150h_20260923/preparation_status.json`，正式训练进度为该目录的 `status.json`。
+
 基座为官方通用 **hexgrad/Kokoro-82M v1.0**，不使用 v1.1-zh。以 LITs 的 MajesticVoice 中文、英文、中英混合合成语音做单音色适配。
 
 文档：[完整训练报告](docs/training_report.md)、[训练技术参考](docs/training_reference.md)、[训练与评估结果](docs/evaluation_results.md)、[依赖与模型准备](docs/dependencies.md)。两阶段训练和最终450条固定文本评价已完成。评估文档已补充与LITs直接训练IMF最终170k的同文本对比。
@@ -86,10 +88,16 @@ nvidia-smi
 
 ## 清理后的目录
 
-`runs/`只保留正式7M训练、20轮82M教师实验、完整baseline重跑、Web Demo和TensorBoard对比配置。蒸馏预检、benchmark及临时评分目录已清理，结论保存在`reports/distill7m_preflight*`；正式checkpoint和评估保留。
+`runs/`保留150h两阶段重训、正式7M训练、20轮82M教师实验、完整baseline重跑、Web Demo和TensorBoard对比配置。预检、benchmark及临时评分目录已清理；`reports/`保留数据审计、预检汇总和恢复检查，重复明细与过时清理记录已移除。正式checkpoint和评估保留。
 
 `provenance/`的冗余上游副本已移除。必要源码、许可证和版本信息在`vendor/`，下载及校验清单在`configs/model_assets.json`，原调研探针所需最小片段在`scripts/review_sources/`。
 
 ## 仓库内容
 
 提交源码、训练及模型结构配置、依赖版本与来源校验值、许可证、评估JSON/CSV。大权重、训练数据、checkpoint、WAV、虚拟环境和凭据不入Git。在其他机器使用前按[依赖准备](docs/dependencies.md)配置外部数据及评价环境。
+
+## 长文本数据合成
+
+已迁入[合成与质检脚本](data_generation/majestic_long/README.md)。目标中文25小时、英文12.5小时、混读12.5小时；每条至少三个完整句子，实际音频15–45秒，Kokoro有效音素不超过510，与已有100小时去重。本批已完成50.82小时并通过最终审计，数据目录为 `data/majestic_long50h`，只累计完整质检通过的唯一音频。
+
+7.48M学生的模型组装、实际训练数据、首尾监督修正、导出方法及最终450条评估对比，见[完整蒸馏报告](docs/distillation_7m_training_report.md)。

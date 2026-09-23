@@ -3,19 +3,20 @@
   "load": {
     "parameters": 7477702,
     "loaded_parameters": 0,
-    "initialization": "random_student_own_teacher"
+    "initialization": "random_student_own_teacher",
+    "duration_initial_mean_frames": 2.0291892090177712
   },
   "config": {
     "seed": 20260922,
     "initial_weights": null,
     "teacher_export": "runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final",
-    "steps": 10000,
-    "batch_size": 3,
-    "workers": 0,
+    "steps": 20000,
+    "batch_size": 16,
+    "workers": 4,
     "cpu_threads": 2,
     "bf16": true,
     "crop_frames": 120,
-    "context_frames": 20,
+    "context_frames": 0,
     "lr": 0.0002,
     "discriminator_lr": 0.0002,
     "warmup_steps": 500,
@@ -31,15 +32,16 @@
     "checkpoint_every": 1000,
     "validate_every": 1000,
     "evaluate_every": 1000,
-    "early_evaluation_step": 100
+    "early_evaluation_step": 100,
+    "duration_bias_from_train": true
   },
   "identity": {
-    "train": "ed5a9d3f3d38af9036daf9613a9b04e217420a7ed4e40aa44f1dd1f3ad798845",
-    "val": "647149154fb4d39680ba9a625b28ac052f6ba7cf839959d2e6279543e798b65f",
+    "train": "eef8c4c79d5b97e1b6bc0353287c8b8cfad8eb68ec769ad31d28215e73ed5f29",
+    "val": "310f6e33139e28bb6516ce688af13553e6425d1a5b70e170e17a3162f5a09cbc",
     "teacher_protocol": "6fcc17c091059a1ab64788d62f5e22ea1bdfc30b8ffd3b5a7b3817dc77ee949c",
     "architecture": "4e203206481813c0d3cb9e1b8c308d54c10f9e416dd6931036deb2c7e03b241e",
     "voice": "74e915caa70cccd5c6af7652f7922194ee05c3964bef33fe17a23d9575472cb1"
   },
-  "world_size": 1,
+  "world_size": 4,
   "resumed": null
 }

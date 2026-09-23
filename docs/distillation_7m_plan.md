@@ -61,7 +61,7 @@
 
 预检结果保存在[汇总](../reports/distill7m_preflight.json)和[恢复检查](../reports/distill7m_resume_check.json)。断点恢复的采样位置、CPU/CUDA RNG均一致，下一步前向loss一致到日志精度；CUDA反向不是逐位确定，模型参数差值RMS约1.24e-6、最大约3.03e-4，未宣称逐位复现。三步随机模型的评分只验证评估链路，CER/WER仍为100%，不能作音质成绩。
 
-预检和benchmark的临时运行目录已清理，JSON证据保存在`reports/distill7m_preflight_details/`；正式训练及所有baseline/教师产物保留。[清理记录](../reports/cleanup_20260922.json)。上游源码冗余副本所在的`provenance/`已移除，必要来源和许可证位于`vendor/`，下载清单位于`configs/model_assets.json`。
+预检和benchmark的临时运行目录及重复明细已清理，检查结论保留在[预检汇总](../reports/distill7m_preflight.json)和[恢复检查](../reports/distill7m_resume_check.json)；正式训练及所有baseline/教师产物保留。上游源码冗余副本所在的`provenance/`已移除，必要来源和许可证位于`vendor/`，下载清单位于`configs/model_assets.json`。
 
 ## 2026-09-22 首尾监督修正并从零重训
 

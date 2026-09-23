@@ -1,0 +1,99 @@
+{
+  "dataset_root": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922",
+  "targets_train_hours": {
+    "zh": 25,
+    "en": 12.5,
+    "mixed": 12.5
+  },
+  "targets_heldout_hours_per_language": {
+    "val": 0,
+    "test": 0
+  },
+  "text_policy": "Intact real transcripts, >=3 complete sentences; no concatenation, no rewriting; Kokoro <=510 effective phonemes; 15-45 seconds accepted audio",
+  "tts_endpoints": [
+    "http://127.0.0.1:8240",
+    "http://127.0.0.1:8241",
+    "http://127.0.0.1:8242",
+    "http://127.0.0.1:8243"
+  ],
+  "tts_model": "/119010446/tts-assets/VoxCPM2",
+  "dnsmos_provider": "cuda",
+  "dnsmos_device_id": 1,
+  "quality_metrics_gpus": [
+    3,
+    0
+  ],
+  "dnsmos_runtime_path": "/119010446/tts-assets/runtime/onnxruntime_gpu_1_23_2",
+  "quality_reference_audio_by_language": {
+    "en": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922/reference/en.wav"
+  },
+  "synthesis_references": {
+    "en": {
+      "reference_audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922/reference/en.wav",
+      "prompt_text": "Archie sends his love, and will, with me, be very glad to welcome you to your old home, should you care to visit it.",
+      "source_candidate_id": 72003
+    }
+  },
+  "reference_audio": "/ai_sds_wuzz/DATA_TTS/MajesticVoice_long50h_20260922/reference/zh.wav",
+  "prompt_text": "我觉得很难，肯定得制定计划的。我想说的是，尽管现实生活中我们会有很多的责任，但其实我们也可以寻找到一些小的机会来追寻梦想嘛。",
+  "seed": 20260922,
+  "max_candidates_per_text": 4,
+  "candidates_per_round": 2,
+  "max_audio_seconds": 45,
+  "min_audio_seconds": 15,
+  "thresholds": {
+    "max_cer": 0.02,
+    "max_english_wer": 0.02,
+    "max_mixed_english_wer": 0.0,
+    "max_mixed_chinese_cer": 0.02,
+    "allow_exact_tonal_pinyin": true,
+    "max_raw_cer_for_tonal_exception": 0.05,
+    "min_wavlm_similarity": 0.7,
+    "min_camp_similarity": 0.68,
+    "min_dnsmos_ovrl": 3.3,
+    "min_dnsmos_sig": 3.5,
+    "min_dnsmos_bak": 3.8,
+    "max_clip_fraction": 0.0005,
+    "min_active_fraction": 0.55,
+    "max_leading_silence": 0.4,
+    "max_trailing_silence": 0.6,
+    "max_internal_silence": 0.8
+  },
+  "training": {
+    "auto_start": false
+  },
+  "text_source_mode": "foundation_and_emilia_intact_long",
+  "llm_text_generation_enabled": false,
+  "active_languages": [
+    "zh",
+    "en",
+    "mixed"
+  ],
+  "synthesis_language_slots": [
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "en",
+    "en",
+    "mixed",
+    "mixed"
+  ],
+  "max_candidates_per_text_by_language": {
+    "zh": 4,
+    "en": 4,
+    "mixed": 8
+  },
+  "allow_external_reviewed_llm_text": true,
+  "synthesis_max_tokens": 1000,
+  "requests_per_endpoint": 8,
+  "quality_batch_size": 4,
+  "outstanding_texts_per_language": 48,
+  "min_sentences": 3,
+  "kokoro_max_tokens": 510,
+  "tts_max_model_len": 4096,
+  "text_estimate_seconds": [
+    17,
+    45
+  ]
+}

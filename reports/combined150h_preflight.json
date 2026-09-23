@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "samples": 128,
+  "max_seconds": 31.84,
+  "max_tokens": 510,
+  "stages": {
+    "1": {
+      "status": "training",
+      "stage": 1,
+      "epoch": 0,
+      "global_step": 2,
+      "stage_step": 2,
+      "stage_budget_steps": 8,
+      "samples_per_second": 28.190360031524964,
+      "world_size": 4,
+      "batch_size_per_gpu": 16,
+      "losses": {
+        "generated_peak": 0.5370141267776489,
+        "target_peak": 0.5394821166992188,
+        "loss": 21.62276840209961,
+        "mel": 0.7093667984008789,
+        "wavlm": 2.765927314758301,
+        "gan": 9.083827018737793,
+        "discriminator": 8.178250312805176,
+        "grad_norm": 15.231788635253906,
+        "s2s": 6.198452949523926,
+        "mono": 0.027726877480745316
+      },
+      "updated_at": 1790144870.9744456
+    },
+    "2": {
+      "status": "training",
+      "stage": 2,
+      "epoch": 0,
+      "global_step": 4,
+      "stage_step": 2,
+      "stage_budget_steps": 40,
+      "samples_per_second": 25.429252173815357,
+      "world_size": 4,
+      "batch_size_per_gpu": 16,
+      "losses": {
+        "generated_peak": 0.562659502029419,
+        "target_peak": 0.565521240234375,
+        "loss": 32.67757797241211,
+        "mel": 0.9269974827766418,
+        "wavlm": 2.7964584827423096,
+        "gan": 9.248403549194336,
+        "discriminator": 8.174186706542969,
+        "grad_norm": 15.087944030761719,
+        "duration": 1.540773868560791,
+        "duration_ce": 0.18382813036441803,
+        "f0": 7.484955310821533,
+        "energy": 3.2954373359680176,
+        "voicepack_delta_norm": 9.065627637028228e-06,
+        "voicepack_grad_norm": 0.8579573631286621
+      },
+      "updated_at": 1790144913.5916994,
+      "long_sample_weight": 1.0
+    }
+  }
+}
