@@ -15,25 +15,36 @@ CUSTOM={
 'mixed':'今天我们要介绍新的training流程。首先检查每个batch中的文本和音频，确认它们的内容一致，然后再开始训练。完成第一轮之后，我们会打开TensorBoard，查看loss曲线和生成的语音。最后把baseline和新模型放在一起，使用相同的测试文本，比较语速、停顿和音色。'}
 
 def main():
-    global OUT
+    global OUT, EXPORTS
     parser=argparse.ArgumentParser()
     parser.add_argument('--baseline-export',type=Path,required=True,help='Explicit baseline: original export was deleted; rerun is a different model')
     parser.add_argument('--output',type=Path,required=True)
-    args=parser.parse_args();OUT=args.output.resolve();EXPORTS['baseline']=args.baseline_export.resolve()
+    parser.add_argument('--candidate-export',type=Path,default=EXPORTS['long_weighted'])
+    parser.add_argument('--candidate-key',default='long_weighted')
+    parser.add_argument('--baseline-label',default='旧 baseline · 10轮')
+    parser.add_argument('--candidate-label',default='延长至20轮 + 长样本加权')
+    parser.add_argument('--manifest',type=Path,help='Reuse frozen text and phoneme inputs from an earlier comparison')
+    args=parser.parse_args();OUT=args.output.resolve()
+    if not re.fullmatch('[a-z][a-z0-9_]*',args.candidate_key) or args.candidate_key=='baseline':
+        raise ValueError('Invalid candidate key')
+    EXPORTS={'baseline':args.baseline_export.resolve(),args.candidate_key:args.candidate_export.resolve()}
     for export in EXPORTS.values():
         for name in ['kokoro.pth','majestic.pt']:
             if not (export/name).is_file():raise FileNotFoundError(export/name)
     torch.set_num_threads(2);torch.manual_seed(20260922)
     OUT.mkdir(exist_ok=False)
-    frontend=Frontend(); selected=[]
+    frontend=None if args.manifest else Frontend(); selected=[]
     val=records(ROOT/'data/prepared/val.jsonl')
     for lang in ('zh','en','mixed'):
+        if args.manifest:break
         rows=sorted((r for r in val if r['language']==lang),key=lambda r:(-len(r['token_ids']),r['audio']))[:4]
         for i,row in enumerate(rows):
             selected.append(dict(id=f'{lang}_val_{i+1}',language=lang,ref_text=row['text'],token_ids=row['token_ids'],phonemes=row['phonemes'],reference_audio=row['audio'],selection='longest validation texts per language'))
         phonemes,ids=frontend(CUSTOM[lang],lang)
         if len(ids)>510:raise ValueError((lang,len(ids)))
         selected.append(dict(id=f'{lang}_context',language=lang,ref_text=CUSTOM[lang],token_ids=ids,phonemes=phonemes,selection='authored four-sentence probe'))
+    if args.manifest:selected=records(args.manifest)
+    if len({r['id'] for r in selected})!=len(selected):raise ValueError('Duplicate sample IDs')
     for row in selected:
         assert len(row['token_ids'])<=510
         # Preserve exact token identity to isolate context, avoiding G2P changes.
@@ -43,6 +54,9 @@ def main():
             row['prefix_text']=re.split(r'(?<=[。！？.!?])',row['ref_text'],maxsplit=1)[0]
     (OUT/'manifest.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in selected))
     provenance={'speed':1,'sentence_chunking':False,'selection':'four longest validation texts per language plus one authored four-sentence probe per language','model_hashes':{},'validation_manifest_sha256':digest(ROOT/'data/prepared/val.jsonl')}
+    provenance.update(model_labels={'baseline':args.baseline_label,args.candidate_key:args.candidate_label},
+                      exports={k:str(v) for k,v in EXPORTS.items()},
+                      input_manifest_sha256=digest(args.manifest) if args.manifest else None)
     for label,export in EXPORTS.items():
         dest=OUT/label;dest.mkdir();(dest/'wavs').mkdir();(dest/'prefix').mkdir()
         provenance['model_hashes'][label]={name:digest(export/name) for name in ['kokoro.pth','majestic.pt']}

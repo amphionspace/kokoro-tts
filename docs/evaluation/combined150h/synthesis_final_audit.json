@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "hours": {
+    "en": 12.743555555555572,
+    "zh": 25.46933333333334,
+    "mixed": 12.609822222222196
+  },
+  "counts": {
+    "en": 2298,
+    "zh": 4907,
+    "mixed": 2298
+  },
+  "min_seconds": {
+    "en": 15.04,
+    "zh": 15.04,
+    "mixed": 15.04
+  },
+  "max_seconds": {
+    "en": 31.84,
+    "zh": 28.32,
+    "mixed": 31.84
+  },
+  "targets": {
+    "zh": 25,
+    "en": 12.5,
+    "mixed": 12.5
+  },
+  "min_sentences": 3,
+  "max_kokoro_tokens": 510,
+  "previous_collection_overlap": false,
+  "training_started": false
+}

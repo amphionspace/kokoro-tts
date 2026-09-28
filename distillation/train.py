@@ -60,6 +60,9 @@ def main():
         init['duration_initial_mean_frames']=mean_frames
     voice=torch.load(ROOT/c['teacher_export']/'majestic.pt',map_location=device,weights_only=True)[0]
     identity['voice']=digest(ROOT/c['teacher_export']/'majestic.pt')
+    teacher_protocol=json.loads((a.cache/'protocol_rank0.json').read_text())
+    if teacher_protocol['voice_sha256']!=identity['voice'] or teacher_protocol['weights_sha256']!=digest(ROOT/c['teacher_export']/'kokoro.pth'):
+        raise ValueError('Teacher cache/model identity mismatch')
     for p_ in student.parameters():p_.requires_grad_(True)
     model=DDP(student,device_ids=[local],find_unused_parameters=True,broadcast_buffers=False) if world>1 else student
     discriminator=DDP(critics,device_ids=[local],broadcast_buffers=False) if world>1 else critics

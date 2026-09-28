@@ -4,14 +4,22 @@ from pathlib import Path
 from training.common import ROOT,records,write_json,digest
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--cache',type=Path,required=True);p.add_argument('--world-size',type=int,default=4);a=p.parse_args();cache=a.cache.resolve()
+    p=argparse.ArgumentParser();p.add_argument('--cache',type=Path,required=True);p.add_argument('--world-size',type=int,default=4)
+    p.add_argument('--prepared-dir',type=Path);p.add_argument('--teacher',type=Path)
+    a=p.parse_args();cache=a.cache.resolve()
     protocols=[]
     for rank in range(a.world_size):
         complete=json.loads((cache/f'complete_rank{rank}.json').read_text());protocols.append(complete['protocol'])
     if any(p!=protocols[0] for p in protocols):raise ValueError('Teacher worker protocol mismatch')
+    prepared=(a.prepared_dir or Path(protocols[0].get('prepared_directory',ROOT/'data/prepared'))).resolve()
+    if a.teacher:
+        teacher=a.teacher.resolve()
+        if digest(teacher/'kokoro.pth')!=protocols[0]['weights_sha256'] or digest(teacher/'majestic.pt')!=protocols[0]['voice_sha256']:
+            raise ValueError('Cache does not match the requested teacher')
     report={'teacher':protocols[0],'splits':{}}
     for split in ['train','val']:
-        source=records(ROOT/f'data/prepared/{split}.jsonl')
+        if digest(prepared/f'{split}.jsonl')!=protocols[0]['source_sha256'][split]:raise ValueError('Source manifest changed')
+        source=records(prepared/f'{split}.jsonl')
         rows=[]
         for rank in range(a.world_size):rows+=records(cache/f'{split}_rank{rank}.jsonl')
         rows.sort(key=lambda r:r['source_index'])

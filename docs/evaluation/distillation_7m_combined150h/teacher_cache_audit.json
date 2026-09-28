@@ -1,0 +1,43 @@
+{
+  "teacher": {
+    "teacher": "/119010446/Kokoro-TTS-ZH/runs/majestic_combined150h_20260923/eval/stage2_final",
+    "prepared_directory": "/119010446/Kokoro-TTS-ZH/data/prepared_combined150h_20260923",
+    "weights_sha256": "cebe101b16f1b623cc792ba34fef569b633193cc867fc79cb939fce179f9ce68",
+    "voice_sha256": "4a9d0499b67a37876efd52eb7b1c8beabaf7717ebeacfacab68117b2d4eec041",
+    "sample_rate": 24000,
+    "samples_per_frame": 600,
+    "speed": 1,
+    "seed": 20260922,
+    "source_sha256": {
+      "train": "7b57373385015e871708b523f766cc45c7d98d52293204954b9157aae648391f",
+      "val": "f1ca7b1c2294a821e67c2ffada236c14d27f0b0b7d63f20f26a4c477753b211d"
+    },
+    "contract_sha256": "daf8bea181818416ef5fae55847eb75c08bb009b874d65cf57edbf86303aca20"
+  },
+  "splits": {
+    "train": {
+      "count": 63226,
+      "hours": 150.6288541666675,
+      "languages": {
+        "zh": 30230,
+        "en": 18813,
+        "mixed": 14183
+      },
+      "max_seconds": 30.9,
+      "clipped_rows": 0,
+      "manifest_sha256": "ee1dff0556b79317decfe97da0e39d6a0949f03e5c54252601e96b08c9b1b43e"
+    },
+    "val": {
+      "count": 400,
+      "hours": 0.7713541666666668,
+      "languages": {
+        "mixed": 93,
+        "en": 115,
+        "zh": 192
+      },
+      "max_seconds": 19.35,
+      "clipped_rows": 0,
+      "manifest_sha256": "7a0fe421aa8390ffc1290defaf6f933c9ffb02770e9621fbecf0e313c1f89c62"
+    }
+  }
+}

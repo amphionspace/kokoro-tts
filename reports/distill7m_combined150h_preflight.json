@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "scope": "192 duration/token extremes, 12 validation targets, 4 GPUs batch16; two student steps with GAN active",
+  "status": {
+    "status": "training",
+    "step": 2,
+    "budget_steps": 20000,
+    "epoch": 1,
+    "world_size": 4,
+    "batch_size_per_gpu": 16,
+    "samples_per_second": 89.36141277773702,
+    "peak_memory_gb": 20.236783027648926,
+    "losses": {
+      "duration": 0.9113789796829224,
+      "f0": 17.194438934326172,
+      "energy": 5.833341598510742,
+      "stft": 6.495852470397949,
+      "mel": 3.7139363288879395,
+      "silence": 0.13019415736198425,
+      "silent_fraction": 0.1290625035762787,
+      "wavlm": 3.015002965927124,
+      "gan_adversarial": 7.936774730682373,
+      "gan_features": 4.5751953125,
+      "gan_relative": 0.00018248055130243301,
+      "loss": 107.18019104003906,
+      "discriminator": 7.948461055755615,
+      "grad_norm": 284.51275634765625,
+      "discriminator_grad_norm": 7.158152103424072,
+      "generated_peak": 0.8994140625,
+      "lr": 8.000000093488779e-07
+    },
+    "updated_at": 1790215173.1264153
+  },
+  "gradients": {
+    "bert": 1.1056668422688198,
+    "bert_encoder": 0.268605983018421,
+    "text_encoder": 0.0030297416130283597,
+    "predictor": 0.3579600232904224,
+    "decoder": 4.855636784224064
+  },
+  "teacher_cache": {
+    "teacher": {
+      "teacher": "/119010446/Kokoro-TTS-ZH/runs/majestic_combined150h_20260923/eval/stage2_final",
+      "prepared_directory": "/119010446/Kokoro-TTS-ZH/data/distill7m_combined150h_preflight",
+      "weights_sha256": "cebe101b16f1b623cc792ba34fef569b633193cc867fc79cb939fce179f9ce68",
+      "voice_sha256": "4a9d0499b67a37876efd52eb7b1c8beabaf7717ebeacfacab68117b2d4eec041",
+      "sample_rate": 24000,
+      "samples_per_frame": 600,
+      "speed": 1,
+      "seed": 20260922,
+      "source_sha256": {
+        "train": "0f9570d880df4a5879bacf7f38cc51f9a1a7c448d6503ea0c4af41f2bed344af",
+        "val": "076fc3416f35640fa7bd67aacc796a54e3ac5d14f0cd5a29dac4ee4de086d0d0"
+      },
+      "contract_sha256": "e60419c366ee32c067b708b8cc2d03a7aab8da8622d9f2274379d3a3fdccbb33"
+    },
+    "splits": {
+      "train": {
+        "count": 192,
+        "hours": 1.3168611111111104,
+        "languages": {
+          "zh": 64,
+          "en": 64,
+          "mixed": 64
+        },
+        "max_seconds": 30.9,
+        "clipped_rows": 0,
+        "manifest_sha256": "45fafe761a720f83761a595e50377afce256bf0cd2ca977908790fcbc2d46514"
+      },
+      "val": {
+        "count": 12,
+        "hours": 0.049743055555555554,
+        "languages": {
+          "zh": 4,
+          "en": 4,
+          "mixed": 4
+        },
+        "max_seconds": 19.35,
+        "clipped_rows": 0,
+        "manifest_sha256": "cb47ac7afa131bf28e6721207f9105c5a9863314bd7b2ec187878073835bedfb"
+      }
+    }
+  }
+}

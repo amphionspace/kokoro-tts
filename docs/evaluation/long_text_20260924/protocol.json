@@ -1,0 +1,36 @@
+{
+  "speed": 1,
+  "sentence_chunking": false,
+  "selection": "four longest validation texts per language plus one authored four-sentence probe per language",
+  "model_hashes": {
+    "baseline": {
+      "kokoro.pth": "41aba30010f6e95fed2c53d801a4f08c6d37ea1f151a06191f9d5a0d5f0a92c9",
+      "majestic.pt": "74e915caa70cccd5c6af7652f7922194ee05c3964bef33fe17a23d9575472cb1"
+    },
+    "combined150h": {
+      "kokoro.pth": "cebe101b16f1b623cc792ba34fef569b633193cc867fc79cb939fce179f9ce68",
+      "majestic.pt": "4a9d0499b67a37876efd52eb7b1c8beabaf7717ebeacfacab68117b2d4eec041"
+    }
+  },
+  "validation_manifest_sha256": "f1ca7b1c2294a821e67c2ffada236c14d27f0b0b7d63f20f26a4c477753b211d",
+  "model_labels": {
+    "baseline": "旧100h · 20轮长样本加权",
+    "combined150h": "新150h · 20轮长样本加权"
+  },
+  "exports": {
+    "baseline": "/119010446/Kokoro-TTS-ZH/runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final",
+    "combined150h": "/119010446/Kokoro-TTS-ZH/runs/majestic_combined150h_20260923/eval/stage2_final"
+  },
+  "input_manifest_sha256": "4745c7b5ea01a3d235d898cb0a9538ad2fa71ba115b32e7a9c3ea074f7dbbe4b",
+  "scoring": {
+    "asr": "Qwen3-ASR-1.7B, empty context, sdpa, max_new_tokens=256",
+    "speaker_metrics": "LITs unchanged WavLM/CAMP, fixed language references",
+    "dnsmos": "LITs unchanged DNSMOS",
+    "all_models_rescored_in_this_run": true,
+    "script_sha256": {
+      "scripts/compare_long_text.py": "80245d8bd3de3759ba6c82b3234c760c913f7e5a40693dd57cabb810d353b103",
+      "scripts/report_long_text.py": "c192d76100dbf44e96fbc99d9b0d743531ca4a635099c9da1d5dff23136fd3bc",
+      "training/evaluate.py": "0097b5333981812da6fd7b97e162c7e6b70d30b0ee9262ae64db77e601706662"
+    }
+  }
+}

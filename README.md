@@ -1,6 +1,8 @@
 # Kokoro TTS ZH · 大气女声
 
-2026-09-23已启动 **82M合并数据两阶段重训**：旧100小时与新增50.82小时长文本合并，共约150.80小时；Stage 1四轮、Stage 2二十轮。数据审计和两个阶段的四卡长样本预检均已通过，配置和运行路径见[本次训练说明](docs/combined150h_training_20260923.md)。启动进度为 `runs/majestic_combined150h_20260923/preparation_status.json`，正式训练进度为该目录的 `status.json`。
+**150h 82M两阶段重训已完成**：旧100小时与新增50.82小时长文本合并，实际150.80小时；Stage 1四轮、Stage 2二十轮。最终450条常规评价与长文本A/B评价均已完成。数据来源、合成质检、训练方法、数值结果与试听入口见[150h完整训练与效果报告](docs/combined150h_training_report.md)。长上下文中的首句缩短有所减轻，尚未消除；运行和复现配置见[训练说明](docs/combined150h_training_20260923.md)。
+
+[新150h教师的7.48M蒸馏](docs/distillation_7m_combined150h_20260924.md)已完成20,000步，最终450条评价全部成功；best与final结果已整理归档。运行目录为`runs/majestic_student7m_combined150h_20260924`。长文本A/B的临时页面与音频已按要求删除，数值报告保留。
 
 基座为官方通用 **hexgrad/Kokoro-82M v1.0**，不使用 v1.1-zh。以 LITs 的 MajesticVoice 中文、英文、中英混合合成语音做单音色适配。
 

@@ -10,12 +10,13 @@ from kokoro import KModel
 def main():
     p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
     p.add_argument('--teacher',type=Path,default=ROOT/'runs/majestic_s2_20ep_long_resume6k_20260921/eval/stage2_final')
+    p.add_argument('--prepared-dir',type=Path,default=ROOT/'data/prepared')
     p.add_argument('--rank',type=int,default=0);p.add_argument('--world-size',type=int,default=1)
     p.add_argument('--limit-per-language',type=int,default=0)
     args=p.parse_args();out=args.output.resolve();out.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(2);seed_all(20260922)
-    teacher=args.teacher.resolve()
-    meta={'teacher':str(teacher),'weights_sha256':digest(teacher/'kokoro.pth'),'voice_sha256':digest(teacher/'majestic.pt'),'sample_rate':24000,'samples_per_frame':600,'speed':1,'seed':20260922,'source_sha256':{s:digest(ROOT/f'data/prepared/{s}.jsonl') for s in ['train','val']}}
+    teacher=args.teacher.resolve();prepared=args.prepared_dir.resolve()
+    meta={'teacher':str(teacher),'prepared_directory':str(prepared),'weights_sha256':digest(teacher/'kokoro.pth'),'voice_sha256':digest(teacher/'majestic.pt'),'sample_rate':24000,'samples_per_frame':600,'speed':1,'seed':20260922,'source_sha256':{s:digest(prepared/f'{s}.jsonl') for s in ['train','val']}}
     meta['contract_sha256']=hashlib.sha256(json.dumps(meta,sort_keys=True).encode()).hexdigest()
     existing=out/f'protocol_rank{args.rank}.json'
     if existing.exists() and json.loads(existing.read_text())!=meta:raise ValueError('Teacher cache protocol changed')
@@ -28,7 +29,7 @@ def main():
     hook=model.decoder.register_forward_pre_hook(capture)
     total=0;wall=time.time()
     for split in ['val','train']:
-        rows=records(ROOT/f'data/prepared/{split}.jsonl');counts={};selected=[]
+        rows=records(prepared/f'{split}.jsonl');counts={};selected=[]
         for i,row in enumerate(rows):
             lang=row['language'];counts.setdefault(lang,0)
             if args.limit_per_language and counts[lang]>=args.limit_per_language:continue

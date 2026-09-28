@@ -1,0 +1,85 @@
+{
+  "old": {
+    "sources": {
+      "Premium": {
+        "rows": 26112,
+        "hours": 52.081555555554985,
+        "languages": {
+          "zh": 25323,
+          "mixed": 789
+        }
+      },
+      "HiFiTTS": {
+        "rows": 16515,
+        "hours": 25.000222222221723,
+        "languages": {
+          "en": 16515
+        }
+      },
+      "Emilia2": {
+        "rows": 10482,
+        "hours": 22.13844444444419,
+        "languages": {
+          "mixed": 10482
+        }
+      },
+      "DOTA-ME-CS_reviewed_GPT4o": {
+        "rows": 614,
+        "hours": 0.7552888888888886,
+        "languages": {
+          "mixed": 614
+        }
+      }
+    },
+    "min_seconds": 3.04,
+    "max_seconds": 20.0,
+    "mean_seconds": 6.699399512313235
+  },
+  "new": {
+    "sources": {
+      "Emilia2": {
+        "rows": 8691,
+        "hours": 46.92146666666652,
+        "languages": {
+          "en": 2298,
+          "zh": 4114,
+          "mixed": 2279
+        }
+      },
+      "Premium": {
+        "rows": 812,
+        "hours": 3.90124444444444,
+        "languages": {
+          "zh": 793,
+          "mixed": 19
+        }
+      }
+    },
+    "min_seconds": 15.04,
+    "max_seconds": 31.84,
+    "mean_seconds": 19.253052720193473
+  },
+  "synthesis": {
+    "texts_admitted": 11180,
+    "candidate_states": {
+      "passed": 15844,
+      "rejected": 14156
+    }
+  },
+  "stage1_complete.json": {
+    "utc": "2026-09-23T08:17:02.469015+00:00",
+    "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_combined150h_20260923/checkpoints/stage1_final.pth",
+    "global_step": 3952,
+    "time": 1790151422.4690146
+  },
+  "stage2_complete.json": {
+    "utc": "2026-09-23T18:41:11.098687+00:00",
+    "checkpoint": "/119010446/Kokoro-TTS-ZH/runs/majestic_combined150h_20260923/checkpoints/stage2_final.pth",
+    "global_step": 23712,
+    "time": 1790188871.0986872
+  },
+  "training_complete.json": {
+    "utc": "2026-09-23T18:41:15.614739+00:00",
+    "completed_at": 1790188875.6147387
+  }
+}

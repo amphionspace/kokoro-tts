@@ -1,7 +1,7 @@
 """Freeze a distillation run, wait for a complete teacher cache, and train/evaluate."""
 import argparse,fcntl,hashlib,json,os,shutil,subprocess,time
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(os.environ.get('KOKORO_PROJECT_ROOT',Path(__file__).resolve().parents[1]))
 
 def write(path,value):
     tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(value,indent=2)+'\n');tmp.replace(path)
@@ -28,14 +28,15 @@ def main():
                 path=cache/f'status_rank{rank}.json'
                 if path.exists():progress[rank]=json.loads(path.read_text())
             write(run/'supervisor_status.json',{'status':'waiting_for_teacher_cache','pid':os.getpid(),'progress':progress,'updated_at':time.time()})
-            processes=ROOT/'runs/distill7m_teacher_cache/processes.json'
+            processes=cache/'processes.json'
             if processes.exists():
                 for record in json.loads(processes.read_text())['processes']:
                     if (cache/f"complete_rank{record['rank']}.json").exists():continue
                     proc=Path(f"/proc/{record['pid']}/cmdline")
                     if not proc.exists() or b'distillation.dump_teacher' not in proc.read_bytes():raise RuntimeError(f"Teacher cache worker {record['rank']} exited before completion")
             time.sleep(15)
-        with (run/'cache_audit.log').open('w') as f:subprocess.run([python,'-m','distillation.prepare_cache','--cache',str(cache)],cwd=source,env=env,stdout=f,stderr=subprocess.STDOUT,check=True)
+        config=json.loads((run/'config.json').read_text())
+        with (run/'cache_audit.log').open('w') as f:subprocess.run([python,'-m','distillation.prepare_cache','--cache',str(cache),'--prepared-dir',str(ROOT/config.get('prepared_directory','data/prepared')),'--teacher',str(ROOT/config['teacher_export'])],cwd=source,env=env,stdout=f,stderr=subprocess.STDOUT,check=True)
         shutil.copy2(cache/'ready.json',run/'teacher_cache_audit.json')
         processes={'supervisor_pid':os.getpid(),'started_at':time.time()}
         processes.update(tensorboard_pid=None,tensorboard_port=32003,tensorboard_mode='shared')
